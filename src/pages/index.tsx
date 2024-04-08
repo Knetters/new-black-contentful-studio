@@ -1,11 +1,11 @@
-import Head from 'next/head';
-import { Inter } from 'next/font/google';
-import styles from '@/styles/Home.module.css';
-import { fetchEntries } from '@/utils/contentful';
-import Product from '../../lib/components/Product';
-import TopLine from '../../lib/components/TopLine';
+import Head from "next/head";
+import { Inter } from "next/font/google";
+import styles from "@/styles/Home.module.css";
+import { fetchEntries } from "@/utils/contentful";
+import Product from "../../lib/components/Product";
+import Header from "../../lib/components/Header";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ products }) {
   return (
@@ -17,8 +17,7 @@ export default function Home({ products }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* header */}
-      <TopLine />
+      <Header />
 
       <main className={`${styles.main} ${inter.className}`}>
         <div className={styles.grid}>
@@ -32,7 +31,7 @@ export default function Home({ products }) {
 }
 
 export async function getStaticProps() {
-  const products = await fetchEntries('products'); // Fetching products from Contentful
+  const products = await fetchEntries("products"); // Fetching products from Contentful
   return {
     props: {
       products,

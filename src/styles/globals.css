@@ -1,11 +1,15 @@
 :root {
   font-size: 10px;
 
-  --f-black: #111111;
+  --f-black: #1d1e1d;
   --f-white: #f1f1f1;
+  --f-gold: #c4a66f;
 
+  --bg-white: #f1f1f1;
   --bg-off-white: #edeee6;
-  --bg-beige: #dac9af;
+  --bg-beige: #f4efe7;
+  --bg-darkBrown: #1d1e1d;
+  --bg-creme: #dbc9af;
 }
 
 * {
@@ -18,4 +22,13 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  font-family: Aktiv Grotesk,Arial,sans-serif;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  color: var(--f-white);
+  margin: 0;
 }
