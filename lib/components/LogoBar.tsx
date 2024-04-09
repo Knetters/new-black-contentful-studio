@@ -1,7 +1,10 @@
 import styles from "@/styles/Home.module.css";
-import Image from "next/image";
 
-const LogoBar = () => {
+interface LogoBarComponentProps {
+  text: string;
+}
+
+export const LogoBar: React.FC<LogoBarComponentProps> = ({ text }) => {
   return (
     <div className={styles.logoBar}>
       <svg
@@ -122,5 +125,3 @@ const LogoBar = () => {
     </div>
   );
 };
-
-export default LogoBar;

@@ -1,7 +1,11 @@
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 
-const Navbar = () => {
+interface NavbarComponentProps {
+  text: string;
+}
+
+export const Navbar: React.FC<NavbarComponentProps> = ({ text }) => {
   return (
     <nav className={styles.nav}>
       <Link className={`${styles.navItem} ${styles.active}`} href="/about">
@@ -25,5 +29,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;

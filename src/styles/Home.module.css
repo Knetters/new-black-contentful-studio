@@ -82,19 +82,18 @@
 
 /* Top line */
 .line {
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
+  background-color: var(--bg-darkBrown);
   gap: 1.6rem;
   font-size: 1.2rem;
-  background-color: var(--bg-darkBrown);
   color: var(--f-white);
   padding: .7rem 0rem;
   position: relative;
 }
 
 .line span:first-child {
-  border-right: .5px solid var(--f-white);
   padding-right: 1.6rem
 }
 
@@ -103,6 +102,7 @@
   right: 0;
   margin-right: 2rem;
   font-size: 1.2rem;
+  color: var(--f-white);
 }
 
 /* Logo bar */
@@ -111,6 +111,7 @@
   display: flex;
   position: relative;
   justify-content: right;
+  width: 100vw
 }
 
 .logo {
@@ -139,6 +140,7 @@
   display: flex;
   background-color: var(--bg-beige);
   justify-content: center;
+  width: 100vw;
 }
 
 .navItem {
@@ -155,4 +157,36 @@
 
 .active {
   background-color: #fff;
+}
+
+/* Message box */
+.messageBox {
+  width: 100vw;
+  text-align: center;
+  padding: 2rem;
+  color: var(--f-white);
+  background-color: var(--bg-darkBrown);
+  position: relative;
+}
+
+.messageBox p {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.messageURL {
+  font-size: 1.4rem;
+  text-decoration: underline;
+  text-transform: uppercase;
+  color: var(--f-white);
+  font-weight: 600;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+  cursor: pointer;
 }

@@ -24,3 +24,8 @@ body {
   overflow-x: hidden;
   font-family: Aktiv Grotesk,Arial,sans-serif;
 }
+
+button {
+  background-color: transparent;
+  border: none;
+}

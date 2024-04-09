@@ -6,9 +6,9 @@ import {
 } from "@contentful/experiences-sdk-react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 
-import { client } from "../contentfulClient";
-import "../registeredComponents";
-import "../registeredTokens";
+import { client } from "../../contentfulClient";
+import "../../registeredComponents";
+import "../../registeredTokens";
 
 export const getServerSideProps = async ({}: GetServerSidePropsContext) => {
   try {
@@ -16,7 +16,7 @@ export const getServerSideProps = async ({}: GetServerSidePropsContext) => {
       client,
       experienceTypeId: "scotchSodaExperiences",
       localeCode: "en",
-      slug: "homepage",
+      slug: "faq",
     });
 
     if (!experienceEntry) {
