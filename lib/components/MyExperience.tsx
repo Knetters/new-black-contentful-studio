@@ -3,19 +3,17 @@ import {
   ExperienceRoot,
   useFetchBySlug,
 } from "@contentful/experiences-sdk-react";
-import { client } from "../../src/contentfulClient"; //Client created from the previous step
-// trigger component registration
+import { client } from "../../src/contentfulClient";
 import "../registeredComponents";
-// trigger design tokens registration
 import "../registeredTokens";
 
-const experienceTypeId = "scotchSodaExperiences" || ""; //Content type id for the experience
-const localeCode = "en"; //Locale code for the experience (could be dynamic)
+const experienceTypeId = "scotchSodaExperiences" || "";
+const localeCode = "en";
 
 const MyExperience = () => {
   const { experience, isLoading, error } = useFetchBySlug({
     client,
-    slug: "homepage", //Could be fetched from the url,
+    slug: "homepage",
     experienceTypeId,
     localeCode,
   });

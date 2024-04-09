@@ -1,13 +1,14 @@
 import styles from "@/styles/Home.module.css";
 
-const TopLine = () => {
+interface TopLineComponentProps {
+  text: string;
+}
+
+export const TopLine: React.FC<TopLineComponentProps> = ({ text }) => {
   return (
     <div className={styles.line}>
-      <span>Gratis standaard verzending vanaf €50</span>
-      <span>Retourneren binnen 30 dagen</span>
+      <span>{text}</span>
       <button>Dutch / NL</button>
     </div>
   );
 };
-
-export default TopLine;
