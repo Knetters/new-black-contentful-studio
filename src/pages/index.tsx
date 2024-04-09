@@ -1,40 +1,57 @@
-import Head from "next/head";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import { fetchEntries } from "@/utils/contentful";
-import Product from "../../lib/components/Product";
-import Header from "../../lib/components/Header";
+import React from "react";
+import {
+  createExperience,
+  fetchBySlug,
+  ExperienceRoot,
+} from "@contentful/experiences-sdk-react";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 
-const inter = Inter({ subsets: ["latin"] });
+import { client } from "../contentfulClient";
+// trigger component registration
+import "../registeredComponents";
+// trigger design tokens registration
+import "../registeredTokens";
 
-export default function Home({ products }) {
+// example experience content type ID
+
+export const getServerSideProps = async ({}: GetServerSidePropsContext) => {
+  try {
+    const experienceEntry = await fetchBySlug({
+      client,
+      experienceTypeId: "scotchSodaExperiences",
+      localeCode: "en",
+      slug: "homepage",
+    });
+    console.log("🚀 ~ getServerSideProps ~ experienceEntry:", experienceEntry);
+
+    if (!experienceEntry) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        experienceEntryJSON: JSON.stringify(experienceEntry),
+        locale: "en",
+      },
+    };
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+function ExperienceBuilderPage({
+  experienceEntryJSON,
+  locale,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const experience = createExperience(experienceEntryJSON);
+
   return (
-    <>
-      <Head>
-        <title>New Black contentful studio</title>
-        <meta name="description" content="A Next.js app with Contentful CMS" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <Header />
-
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.grid}>
-          {products.map((product) => (
-            <Product key={product.sys.id} product={product} /> // Use the Product component
-          ))}
-        </div>
-      </main>
-    </>
+    <main style={{ width: "100%" }}>
+      <ExperienceRoot experience={experience} locale={locale} />
+    </main>
   );
 }
 
-export async function getStaticProps() {
-  const products = await fetchEntries("products"); // Fetching products from Contentful
-  return {
-    props: {
-      products,
-    },
-  };
-}
+export default ExperienceBuilderPage;

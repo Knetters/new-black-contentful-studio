@@ -7,7 +7,7 @@ defineComponents([
     definition: {
       id: 'button',
       name: 'Button',
-      category: 'Custom Components',
+      category: 'UI elements',
       variables: {
         text: {
           displayName: 'Text',
@@ -16,5 +16,5 @@ defineComponents([
         },
       },
     },
-  },
+  }
 ]);

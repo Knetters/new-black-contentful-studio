@@ -3,6 +3,13 @@
   padding: 2rem;
 }
 
+/* buttons  */
+.UIbutton {
+  padding: 1rem;
+  background-color: var(--bg-black);
+  color: var(--f-white);
+}
+
 /* Product grid */
 .grid {
   display: flex;

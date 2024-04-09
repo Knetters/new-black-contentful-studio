@@ -24,11 +24,3 @@ body {
   overflow-x: hidden;
   font-family: Aktiv Grotesk,Arial,sans-serif;
 }
-
-button {
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  color: var(--f-white);
-  margin: 0;
-}
