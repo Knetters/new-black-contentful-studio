@@ -190,3 +190,62 @@
   margin: 1rem;
   cursor: pointer;
 }
+
+/* TextBlock */
+.article {
+  max-width: 75rem;
+  padding: 4rem 0rem;
+  font-size: 1.4rem;
+}
+
+.articleTitle {
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+.footer {
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: fit-content;
+  background-color: var(--bg-creme);
+  padding: 3rem 2rem 2rem 2rem;
+}
+
+.paymentRow {
+  display: flex;
+  gap: 1rem;
+}
+
+.footeNavRow {
+  width: 100%;
+  display: flex;
+  margin-top: 5rem;
+  justify-content: space-between;
+}
+
+.footerNavItem {
+  width: 100%;
+}
+
+.footerNavItem ul {
+  list-style: none;
+  font-size: 1.4rem;
+}
+
+.footerNavItem li {
+  margin-bottom: .5rem;
+}
+
+.socialsRow {
+  display: flex;
+  gap: .5rem;
+  margin-top: 4rem;
+}
+
+.legalRow {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin-top: 2rem;
+}

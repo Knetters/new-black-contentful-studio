@@ -4,6 +4,9 @@ import { TopLine } from '../lib/components/TopLine';
 import { LogoBar } from '../lib/components/LogoBar';
 import { Navbar } from '../lib/components/Navbar';
 import { Message } from '../lib/components/Message';
+import { TextBlock } from '../lib/components/TextBlock';
+import { Test } from '../lib/components/Test';
+import { Footer } from '../lib/components/Footer';
 
 defineComponents([
   {
@@ -58,10 +61,16 @@ defineComponents([
       name: 'Nav bar',
       category: 'Header',
       variables: {
-        text: {
-          displayName: 'Text',
-          type: 'Text',
-          defaultValue: '',
+        links: {
+          displayName: 'Links',
+          type: 'Object',
+          defaultValue: [{
+            label: 'Veelgestelde vragen',
+            url: '/faq'
+          },{
+            label: 'test',
+            url: '/test'
+          }],
         },
       },
     },
@@ -88,6 +97,63 @@ defineComponents([
           type: 'Text',
           defaultValue: 'link',
         },
+      },
+    },
+  },
+  {
+    component: TextBlock,
+    definition: {
+      id: 'textblock',
+      name: 'TextBlock',
+      category: 'Essentials',
+      variables: {
+        title: {
+          displayName: 'Title',
+          type: 'Text',
+          defaultValue: 'Title',
+        },
+        content: {
+          displayName: 'Content',
+          type: 'Text',
+          defaultValue: 'Content',
+        }
+      },
+    },
+  },
+  {
+    component: Test,
+    definition: {
+      id: 'test',
+      name: 'Test',
+      category: 'Test',
+      builtInStlyes: ['cfMargin', 'cfPadding', 'cfBackgroundColor'],
+      variables: {
+        title: {
+          displayName: 'Title',
+          type: 'Text',
+          defaultValue: 'Title',
+        }
+      },
+    },
+  },
+  {
+    component: Footer,
+    definition: {
+      id: 'footer',
+      name: 'Footer',
+      category: 'Footer',
+      builtInStlyes: ['cfMargin', 'cfPadding', 'cfBackgroundColor'],
+      variables: {
+        title: {
+          displayName: 'Title',
+          type: 'Text',
+          defaultValue: 'Title',
+        },
+        content: {
+          displayName: 'Content',
+          type: 'Text',
+          defaultValue: 'Content',
+        }
       },
     },
   }

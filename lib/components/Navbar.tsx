@@ -1,31 +1,29 @@
 import styles from "@/styles/Home.module.css";
+import React, { ReactNode } from "react";
 import Link from "next/link";
 
 interface NavbarComponentProps {
-  text: string;
+  links: {
+    label: string;
+    url: string;
+  }[];
 }
 
-export const Navbar: React.FC<NavbarComponentProps> = ({ text }) => {
-  return (
-    <nav className={styles.nav}>
-      <Link className={`${styles.navItem} ${styles.active}`} href="/about">
-        Whats new
-      </Link>
-      <Link className={styles.navItem} href="/about">
-        Dames
-      </Link>
-      <Link className={styles.navItem} href="/about">
-        Heren
-      </Link>
-      <Link className={styles.navItem} href="/about">
-        Kinderen
-      </Link>
-      <Link className={styles.navItem} href="/about">
-        Last change
-      </Link>
-      <Link className={styles.navItem} href="/about">
-        Outlet
-      </Link>
-    </nav>
+export const Navbar: React.FC<NavbarComponentProps> = ({
+  links,
+  ...experiencesProps
+}) => {
+  return links ? (
+    <div {...experiencesProps}>
+      <nav className={styles.nav}>
+        {links.map((link, index) => (
+          <Link className={styles.navItem} key={index} href={link.url}>
+            <span>{link.label}</span>
+          </Link>
+        ))}
+      </nav>
+    </div>
+  ) : (
+    <p>geen links</p>
   );
 };
