@@ -5,7 +5,8 @@ import { LogoBar } from '../lib/components/LogoBar';
 import { Navbar } from '../lib/components/Navbar';
 import { Message } from '../lib/components/Message';
 import { TextBlock } from '../lib/components/TextBlock';
-import { Test } from '../lib/components/Test';
+import { FaqContainer } from '../lib/components/FaqContainer';
+import { FaqItem } from '../lib/components/FaqItem';
 import { Footer } from '../lib/components/Footer';
 
 defineComponents([
@@ -90,7 +91,7 @@ defineComponents([
         linkUrl: {
           displayName: 'URL',
           type: 'Text',
-          defaultValue: '#',
+          defaultValue: '/',
         },
         linkText: {
           displayName: 'text',
@@ -121,20 +122,52 @@ defineComponents([
     },
   },
   {
-    component: Test,
+    component: FaqContainer,
     definition: {
-      id: 'test',
-      name: 'Test',
-      category: 'Test',
-      builtInStlyes: ['cfMargin', 'cfPadding', 'cfBackgroundColor'],
+      id: 'faqcontainer',
+      name: 'FaqContainer',
+      category: 'UI',
       variables: {
         title: {
           displayName: 'Title',
           type: 'Text',
           defaultValue: 'Title',
+        },
+        label: {
+          displayName: 'Label',
+          type: 'Text',
+          defaultValue: 'Label',
+        },
+        url: {
+          displayName: 'URL',
+          type: 'Text',
+          defaultValue: '/',
         }
       },
     },
+  },
+  {
+    component: FaqItem,
+    definition: {
+      id: 'faqitem',
+      name: 'FaqItem',
+      category: 'UI',
+      variables: {
+        question: {
+          displayName: 'Question',
+          type: 'Text',
+          defaultValue: 'Question',
+        },
+        answer: {
+          displayName: 'Answer',
+          type: 'Text',
+          defaultValue: 'Answer',
+        }
+      },
+    },
+    // options: {
+    //   wrapComponent: true,
+    // },
   },
   {
     component: Footer,

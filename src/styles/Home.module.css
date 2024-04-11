@@ -210,6 +210,8 @@
   height: fit-content;
   background-color: var(--bg-creme);
   padding: 3rem 2rem 2rem 2rem;
+  bottom: 0;
+  margin-top: 6rem;
 }
 
 .paymentRow {
@@ -248,4 +250,29 @@
   gap: 2rem;
   list-style: none;
   margin-top: 2rem;
+}
+
+/* FAQ */
+.faqItem {
+  width: max-content;
+}
+
+.details {
+  padding: 0.5em 0.5em;
+  width: 100%;
+}
+
+.summary {
+  font-weight: bold;
+  margin: -0.5em -0.5em;
+  padding: 0.5em;
+}
+
+.details[open] {
+  padding: 0.5em;
+}
+
+.details[open] .summary {
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 0.5em;
 }

@@ -1,3 +1,4 @@
+import Layout from '../components/Layout';
 import React from "react";
 import {
   createExperience,
@@ -43,9 +44,9 @@ function ExperienceBuilderPage({
   const experience = createExperience(experienceEntryJSON);
 
   return (
-    <main style={{ width: "100%" }}>
+    <Layout>
       <ExperienceRoot experience={experience} locale={locale} />
-    </main>
+    </Layout>
   );
 }
 

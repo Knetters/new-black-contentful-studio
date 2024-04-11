@@ -11,10 +11,9 @@ interface NavbarComponentProps {
 
 export const Navbar: React.FC<NavbarComponentProps> = ({
   links,
-  ...experiencesProps
 }) => {
   return links ? (
-    <div {...experiencesProps}>
+    <div>
       <nav className={styles.nav}>
         {links.map((link, index) => (
           <Link className={styles.navItem} key={index} href={link.url}>
