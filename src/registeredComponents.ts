@@ -8,6 +8,8 @@ import { TextBlock } from '../lib/components/TextBlock';
 import { FaqContainer } from '../lib/components/FaqContainer';
 import { FaqItem } from '../lib/components/FaqItem';
 import { Footer } from '../lib/components/Footer';
+import { Test } from '../lib/components/Test';
+import { Children } from 'react';
 
 defineComponents([
   {
@@ -144,7 +146,9 @@ defineComponents([
           defaultValue: '/',
         }
       },
+      children: true,
     },
+    options: { wrapComponent: false }
   },
   {
     component: FaqItem,
@@ -165,9 +169,7 @@ defineComponents([
         }
       },
     },
-    options: {
-      wrapComponent: true,
-    },
+    options: { wrapComponent: false }
   },
   {
     component: Footer,
@@ -175,7 +177,6 @@ defineComponents([
       id: 'footer',
       name: 'Footer',
       category: 'Footer',
-      builtInStlyes: ['cfMargin', 'cfPadding', 'cfBackgroundColor'],
       variables: {
         title: {
           displayName: 'Title',

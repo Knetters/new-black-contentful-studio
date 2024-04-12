@@ -6,30 +6,29 @@ interface FaqContainerComponentProps {
   title: string;
   label: string;
   url: string;
-  nestedComponents?: ComponentData[];
-  children?: never;
-}
-
-interface ComponentData {
-  component: React.ComponentType<any>;
-  props: Record<string, any>;
+  children: ReactNode;
 }
 
 export const FaqContainer: React.FC<FaqContainerComponentProps> = ({
   title,
   label,
   url,
-  nestedComponents = [],
+  children,
   ...experiencesProps
 }) => {
   return (
-    <section className={styles.faqContainer}>
-      {nestedComponents.map(({ component: Component, props }, index) => (
-        <Component key={index} {...props} />
-      ))}
-      <Link href={url}>
-        <span>{label}</span>
-      </Link>
-    </section>
+    <div className={styles.faq}>
+      <h2>{title}</h2>
+      <section className={styles.faqContainer}>
+        <div {...experiencesProps}>
+          <div>{children}</div>
+        </div>
+        <div className={styles.linkContainer}>
+          <Link href={url}>
+            <span>{label}</span>
+          </Link>
+        </div>
+      </section>
+    </div>
   );
 };
