@@ -255,8 +255,11 @@
 
 /* FAQ */
 .faq {
-  margin-top: 2rem;
   width: 100%;
+}
+
+.faqTitle {
+  margin-top: 2rem;
 }
 
 .faqContainer {
@@ -266,7 +269,12 @@
 
 .faqItem {
   width: 100%;
-  border-bottom: 1px solid var(--b-grey)
+  border-bottom: 1px solid var(--b-grey);
+  position: relative;
+}
+
+.faqItem:last-child {
+  border: none
 }
 
 .details {
@@ -287,8 +295,34 @@
 
 .linkContainer {
   padding: 2rem 0rem;
+  border-top: 1px solid var(--b-grey);
+}
+
+.link {
+  color: var(--f-black);
+  text-decoration: underline;
 }
 
 .details[open] .summary {
   border: none;
+}
+
+.details > .summary {
+  list-style-type: '';
+}
+
+.details > .summary::after {
+  content: "〱";
+  transform: rotate(270deg);
+  position: absolute;
+  transition: .2s;
+  right: 0;
+}
+
+.details[open] > .summary:after {
+  content: "〱";
+  transform: rotate(450deg);
+  position: absolute;
+  transition: .2s;
+  right: 0;
 }

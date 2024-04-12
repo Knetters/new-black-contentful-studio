@@ -18,16 +18,18 @@ export const FaqContainer: React.FC<FaqContainerComponentProps> = ({
 }) => {
   return (
     <div className={styles.faq}>
-      <h2>{title}</h2>
+      {title !== "" && <h2 className={styles.faqTitle}>{title}</h2>}
       <section className={styles.faqContainer}>
         <div {...experiencesProps}>
           <div>{children}</div>
         </div>
-        <div className={styles.linkContainer}>
-          <Link href={url}>
-            <span>{label}</span>
-          </Link>
-        </div>
+        {url !== "" && (
+          <div className={styles.linkContainer}>
+            <Link href={url}>
+              <span className={styles.link}>{label}</span>
+            </Link>
+          </div>
+        )}
       </section>
     </div>
   );

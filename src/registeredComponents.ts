@@ -129,6 +129,7 @@ defineComponents([
       id: 'faqcontainer',
       name: 'FaqContainer',
       category: 'UI',
+      builtInStlyes: ['cfMargin', 'cfWidth'],
       variables: {
         title: {
           displayName: 'Title',
@@ -144,6 +145,12 @@ defineComponents([
           displayName: 'URL',
           type: 'Text',
           defaultValue: '/',
+        },
+        cfWidth: {
+          displayName: 'Size',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '100%'
         }
       },
       children: true,
