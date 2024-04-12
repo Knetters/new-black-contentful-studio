@@ -165,9 +165,9 @@ defineComponents([
         }
       },
     },
-    // options: {
-    //   wrapComponent: true,
-    // },
+    options: {
+      wrapComponent: true,
+    },
   },
   {
     component: Footer,
