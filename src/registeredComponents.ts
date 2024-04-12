@@ -136,7 +136,7 @@ defineComponents([
         label: {
           displayName: 'Label',
           type: 'Text',
-          defaultValue: 'Label',
+          defaultValue: '',
         },
         url: {
           displayName: 'URL',

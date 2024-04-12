@@ -164,6 +164,7 @@
   width: 100vw;
   text-align: center;
   padding: 2rem;
+  margin-bottom: 2rem;
   color: var(--f-white);
   background-color: var(--bg-darkBrown);
   position: relative;
@@ -192,7 +193,7 @@
 }
 
 /* TextBlock */
-.article {
+/* .article {
   max-width: 75rem;
   padding: 4rem 0rem;
   font-size: 1.4rem;
@@ -200,7 +201,7 @@
 
 .articleTitle {
   margin-bottom: 1rem;
-}
+} */
 
 /* Footer */
 .footer {
@@ -253,6 +254,10 @@
 }
 
 /* FAQ */
+.faqContainer {
+  border: 1px solid black;
+}
+
 .faqItem {
   width: max-content;
 }

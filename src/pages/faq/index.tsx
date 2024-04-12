@@ -1,4 +1,5 @@
 import React from "react";
+import Layout from "../../components/Layout";
 import {
   createExperience,
   fetchBySlug,
@@ -43,9 +44,9 @@ function ExperienceBuilderPage({
   const experience = createExperience(experienceEntryJSON);
 
   return (
-    <main style={{ width: "100%" }}>
+    <Layout>
       <ExperienceRoot experience={experience} locale={locale} />
-    </main>
+    </Layout>
   );
 }
 

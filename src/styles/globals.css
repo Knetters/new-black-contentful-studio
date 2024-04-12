@@ -36,3 +36,9 @@ h2 {
   margin-bottom: 1rem;
   font-size: 1.6rem;
 }
+
+main {
+  font-size: 1.4rem;
+  min-height: 40vh;
+  padding: 0 2rem;
+}
