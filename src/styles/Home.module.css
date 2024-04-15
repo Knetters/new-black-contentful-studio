@@ -300,7 +300,7 @@
 
 .linkContainer {
   padding: 2rem 0rem;
-  border-top: 1px solid var(--b-grey);
+  border-top: .1px solid var(--b-grey);
 }
 
 .link {
@@ -335,8 +335,7 @@
 /* Call to action */
 .ctaRow {
   width: 100%;
-  background-color: transparent;
-  background-color: var(--bg-yellow);
+  /* background-color: var(--bg-yellow); */
   padding: 2rem;
   display: flex;
   justify-content: space-between;

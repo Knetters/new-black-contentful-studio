@@ -1,6 +1,6 @@
-import styles from "@/styles/Home.module.css";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import Link from "next/link";
+import styles from "@/styles/Home.module.css";
 
 interface FaqContainerComponentProps {
   title: string;
@@ -14,15 +14,24 @@ export const FaqContainer: React.FC<FaqContainerComponentProps> = ({
   label,
   url,
   children,
-  ...experiencesProps
 }) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const handleItemClick = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <div className={styles.faq}>
       {title !== "" && <h2 className={styles.faqTitle}>{title}</h2>}
       <section className={styles.faqContainer}>
-        <div {...experiencesProps}>
-          <div>{children}</div>
-        </div>
+        {React.Children.map(children, (child, index) => {
+          // Clone each child with additional props to manage open state
+          return React.cloneElement(child as React.ReactElement, {
+            isOpen: index === openIndex,
+            onToggle: () => handleItemClick(index),
+          });
+        })}
         {url !== "" && (
           <div className={styles.linkContainer}>
             <Link href={url}>
