@@ -8,8 +8,7 @@ import { TextBlock } from '../lib/components/TextBlock';
 import { FaqContainer } from '../lib/components/FaqContainer';
 import { FaqItem } from '../lib/components/FaqItem';
 import { Footer } from '../lib/components/Footer';
-import { Test } from '../lib/components/Test';
-import { Children } from 'react';
+import { CallToAction } from '../lib/components/CallToAction';
 
 defineComponents([
   {
@@ -18,12 +17,19 @@ defineComponents([
       id: 'button',
       name: 'Button',
       category: 'UI',
+      builtInStlyes: ['cfMargin', 'cfPadding', 'cfBackgroundColor'],
       variables: {
         text: {
           displayName: 'Text',
           type: 'Text',
           defaultValue: 'Click me!',
         },
+        cfBackgroundColor: {
+          displayName: 'Background',
+          type: 'Text',
+          defaultValue: 'creme',
+          group: 'style',
+        }
       },
     },
   },
@@ -197,5 +203,50 @@ defineComponents([
         }
       },
     },
-  }
+  },
+  {
+    component: CallToAction,
+    definition: {
+      id: 'calltoaction',
+      name: 'Call to action',
+      category: 'UI',
+      builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor'],
+      variables: {
+        title: {
+          displayName: 'Title',
+          type: 'Text',
+          defaultValue: 'Title',
+        },
+        message: {
+          displayName: 'Message',
+          type: 'Text',
+          defaultValue: 'Message',
+        },
+        label: {
+          displayName: 'Label',
+          type: 'Text',
+          defaultValue: 'Label',
+        },
+        url: {
+          displayName: 'URL',
+          type: 'Text',
+          defaultValue: '/',
+        },
+        cfWidth: {
+          displayName: 'Size',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '100%'
+        },
+        cfBackgroundColor: {
+          displayName: 'Background',
+          type: 'Text',
+          defaultValue: 'yellow',
+          group: 'style',
+        }
+      },
+      children: true,
+    },
+    options: { wrapComponent: false }
+  },
 ]);

@@ -13,7 +13,7 @@ export const FaqItem: React.FC<FaqItemComponentProps> = ({
     <div className={styles.faqItem}>
       <details className={styles.details}>
         <summary className={styles.summary}>{question}</summary>
-        {answer}
+        <p className={styles.answer}>{answer}</p>
       </details>
     </div>
   );
