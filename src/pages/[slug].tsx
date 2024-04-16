@@ -11,35 +11,43 @@ import { ParsedUrlQuery } from "querystring";
 import { client } from "../contentfulClient";
 import "../registeredComponents";
 import "../registeredTokens";
-import { log } from "console";
+import { fetchEntryBySlug } from "@/utils/contentful";
 
 export const getServerSideProps = async ({
   params,
+  locale,
 }: GetServerSidePropsContext<ParsedUrlQuery>) => {
   try {
     const { slug } = params as { slug: string };
 
+    // const entry = await fetchEntryBySlug("yourContentType", "yourPageSlug");
+
     if (!slug) {
       return {
         notFound: true,
+        // Hier als er geen experience is?
       };
     }
 
     const experienceEntry = await fetchBySlug({
       client,
       experienceTypeId: "scotchSodaExperiences",
-      localeCode: "en",
+      localeCode: locale || "nl",
       slug: slug,
     });
 
     if (!experienceEntry) {
       return {
         notFound: true,
+        // Hier als er geen experience is?
       };
     }
 
     return {
       props: {
+        // Als er een page is, return dan geen experienceEntry maar de pagina props uit contentful
+        pageData: null,
+
         experienceEntryJSON: JSON.stringify(experienceEntry),
         locale: "en",
       },
@@ -53,6 +61,7 @@ export const getServerSideProps = async ({
 };
 
 function ExperienceBuilderPage({
+  pageData,
   experienceEntryJSON,
   locale,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -60,7 +69,8 @@ function ExperienceBuilderPage({
 
   return (
     <Layout>
-      <ExperienceRoot experience={experience} locale={locale} />
+      {!pageData && <ExperienceRoot experience={experience} locale={locale} />}
+      {pageData && <p>Niet null</p>}
     </Layout>
   );
 }

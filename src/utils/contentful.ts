@@ -5,10 +5,16 @@ const client = createClient({
   accessToken: 'zjbeDxMIR0mrH1NivBT5tvW9KwlpbL-GDru4KmfWvjA'
 });
 
-export async function fetchEntries(contentType: string) {
+export async function fetchEntryBySlug(contentType: string, slug: string) {
   const entries = await client.getEntries({
-    content_type: contentType
+    content_type: contentType,
+    'fields.slug': slug
   });
-  if (entries.items) return entries.items;
-  console.log(`Error getting Entries for ${contentType}.`);
+
+  if (entries.items.length > 0) {
+    return entries.items[0];
+  } else {
+    console.log(`No entry found for ${contentType} with slug ${slug}.`);
+    return null;
+  }
 }
