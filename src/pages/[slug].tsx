@@ -1,23 +1,35 @@
+import Layout from "../components/Layout";
 import React from "react";
-import Layout from "../../components/Layout";
 import {
   createExperience,
   fetchBySlug,
   ExperienceRoot,
 } from "@contentful/experiences-sdk-react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { ParsedUrlQuery } from "querystring";
 
-import { client } from "../../contentfulClient";
-import "../../registeredComponents";
-import "../../registeredTokens";
+import { client } from "../contentfulClient";
+import "../registeredComponents";
+import "../registeredTokens";
+import { log } from "console";
 
-export const getServerSideProps = async ({}: GetServerSidePropsContext) => {
+export const getServerSideProps = async ({
+  params,
+}: GetServerSidePropsContext<ParsedUrlQuery>) => {
   try {
+    const { slug } = params as { slug: string };
+
+    if (!slug) {
+      return {
+        notFound: true,
+      };
+    }
+
     const experienceEntry = await fetchBySlug({
       client,
       experienceTypeId: "scotchSodaExperiences",
       localeCode: "en",
-      slug: "faq",
+      slug: slug,
     });
 
     if (!experienceEntry) {
@@ -34,6 +46,9 @@ export const getServerSideProps = async ({}: GetServerSidePropsContext) => {
     };
   } catch (e) {
     console.error(e);
+    return {
+      notFound: true,
+    };
   }
 };
 
