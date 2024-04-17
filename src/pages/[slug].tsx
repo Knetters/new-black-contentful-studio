@@ -20,15 +20,16 @@ export const getServerSideProps = async ({
   try {
     const { slug } = params as { slug: string };
 
-    // const entry = await fetchEntryBySlug("yourContentType", "yourPageSlug");
+    // Fetch page data by slug
+    const pageData = await fetchEntryBySlug("page", "about");
 
     if (!slug) {
       return {
         notFound: true,
-        // Hier als er geen experience is?
       };
     }
 
+    // Fetch experience entry by slug
     const experienceEntry = await fetchBySlug({
       client,
       experienceTypeId: "scotchSodaExperiences",
@@ -39,15 +40,12 @@ export const getServerSideProps = async ({
     if (!experienceEntry) {
       return {
         notFound: true,
-        // Hier als er geen experience is?
       };
     }
 
     return {
       props: {
-        // Als er een page is, return dan geen experienceEntry maar de pagina props uit contentful
-        pageData: null,
-
+        pageData, // Pass the page data to props
         experienceEntryJSON: JSON.stringify(experienceEntry),
         locale: "en",
       },
@@ -69,8 +67,11 @@ function ExperienceBuilderPage({
 
   return (
     <Layout>
-      {!pageData && <ExperienceRoot experience={experience} locale={locale} />}
-      {pageData && <p>Niet null</p>}
+      {pageData ? (
+        <p>Niet null</p> // Render page data here if available
+      ) : (
+        <ExperienceRoot experience={experience} locale={locale} /> // Render experience entry
+      )}
     </Layout>
   );
 }
