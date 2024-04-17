@@ -18,10 +18,10 @@ export const getServerSideProps = async ({
   params,
   locale,
 }: GetServerSidePropsContext<ParsedUrlQuery>) => {
-  try {
-    const { slug } = params as { slug: string };
-    const pageData = await fetchEntryBySlug("page", slug);
+  const { slug } = params as { slug: string };
+  const pageData = await fetchEntryBySlug("page", slug);
 
+  if (!pageData) {
     const experienceEntry = await fetchBySlug({
       client,
       experienceTypeId: "scotchSodaExperiences",
@@ -42,11 +42,8 @@ export const getServerSideProps = async ({
         locale: "en",
       },
     };
-  } catch (e) {
-    console.error(e);
-    return {
-      notFound: true,
-    };
+  } else {
+    return;
   }
 };
 
