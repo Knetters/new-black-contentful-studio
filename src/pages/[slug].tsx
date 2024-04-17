@@ -1,4 +1,5 @@
 import Layout from "../components/Layout";
+import styles from "@/styles/Home.module.css";
 import React from "react";
 import {
   createExperience,
@@ -19,17 +20,8 @@ export const getServerSideProps = async ({
 }: GetServerSidePropsContext<ParsedUrlQuery>) => {
   try {
     const { slug } = params as { slug: string };
+    const pageData = await fetchEntryBySlug("page", slug);
 
-    // Fetch page data by slug
-    const pageData = await fetchEntryBySlug("page", "about");
-
-    if (!slug) {
-      return {
-        notFound: true,
-      };
-    }
-
-    // Fetch experience entry by slug
     const experienceEntry = await fetchBySlug({
       client,
       experienceTypeId: "scotchSodaExperiences",
@@ -45,7 +37,7 @@ export const getServerSideProps = async ({
 
     return {
       props: {
-        pageData, // Pass the page data to props
+        pageData,
         experienceEntryJSON: JSON.stringify(experienceEntry),
         locale: "en",
       },
@@ -67,10 +59,11 @@ function ExperienceBuilderPage({
 
   return (
     <Layout>
-      {pageData ? (
-        <p>Niet null</p> // Render page data here if available
-      ) : (
-        <ExperienceRoot experience={experience} locale={locale} /> // Render experience entry
+      {!pageData && <ExperienceRoot experience={experience} locale={locale} />}
+      {pageData && (
+        <div className={styles.contentfulContent}>
+          <h1>{pageData.fields.title}</h1>
+        </div>
       )}
     </Layout>
   );
