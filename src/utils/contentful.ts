@@ -5,10 +5,11 @@ const client = createClient({
   accessToken: 'zjbeDxMIR0mrH1NivBT5tvW9KwlpbL-GDru4KmfWvjA'
 });
 
-export async function fetchEntryBySlug(contentType: string, slug: string) {
+export async function fetchEntryBySlug(contentType: string, slug: string, locale: string) {
   const entries = await client.getEntries({
     content_type: contentType,
-    'fields.slug': slug
+    'fields.slug': slug,
+    locale: locale // Pass locale to the query
   });
 
   if (entries.items.length > 0) {

@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import styles from "@/styles/Home.module.css";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   createExperience,
   fetchBySlug,
@@ -18,15 +18,16 @@ export const getServerSideProps = async ({
   params,
   locale,
 }: GetServerSidePropsContext<ParsedUrlQuery>) => {
+  const lang: string = locale || "en";
   const { slug } = params as { slug: string };
-  const pageData = await fetchEntryBySlug("page", slug);
+  const pageData = await fetchEntryBySlug("page", slug, lang);
 
   if (!pageData) {
     try {
       const experienceEntry = await fetchBySlug({
         client,
         experienceTypeId: "scotchSodaExperiences",
-        localeCode: locale || "nl",
+        localeCode: lang,
         slug: slug,
       });
 
@@ -40,7 +41,7 @@ export const getServerSideProps = async ({
         props: {
           pageData: null,
           experienceEntryJSON: JSON.stringify(experienceEntry),
-          locale: "en",
+          locale: lang,
         },
       };
     } catch (e) {
@@ -54,7 +55,7 @@ export const getServerSideProps = async ({
     return {
       props: {
         pageData,
-        locale: "en",
+        locale: lang,
       },
     };
   }
@@ -65,17 +66,20 @@ function ExperienceBuilderPage({
   experienceEntryJSON,
   locale,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const lang: string = locale || "en";
   let experience = null;
   if (experienceEntryJSON) {
     experience = createExperience(experienceEntryJSON);
   }
-
+  console.log(lang);
+  console.log(pageData);
   return (
     <Layout>
       {experience && <ExperienceRoot experience={experience} locale={locale} />}
       {pageData && (
         <div className={styles.contentfulContent}>
           <h1>{pageData.fields.title}</h1>
+          <p>{pageData.fields.text}</p>
         </div>
       )}
     </Layout>
