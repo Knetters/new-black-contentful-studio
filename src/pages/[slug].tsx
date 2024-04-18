@@ -1,50 +1,68 @@
 import Layout from "../components/Layout";
 import styles from "@/styles/Home.module.css";
 import React from "react";
+import { fetchEntryBySlug } from "@/utils/contentful";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { ParsedUrlQuery } from "querystring";
 import {
   createExperience,
   fetchBySlug,
   ExperienceRoot,
 } from "@contentful/experiences-sdk-react";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { ParsedUrlQuery } from "querystring";
-
 import { client } from "../contentfulClient";
-import "../registeredComponents";
-import "../registeredTokens";
-import { fetchEntryBySlug } from "@/utils/contentful";
 
 export const getServerSideProps = async ({
   params,
   locale,
 }: GetServerSidePropsContext<ParsedUrlQuery>) => {
   const { slug } = params as { slug: string };
-  const pageData = await fetchEntryBySlug("page", slug);
+  let pageData = null;
+
+  try {
+    pageData = await fetchEntryBySlug("page", slug);
+  } catch (error) {
+    console.error("Error fetching page data:", error);
+    return {
+      notFound: true,
+    };
+  }
 
   if (!pageData) {
-    const experienceEntry = await fetchBySlug({
-      client,
-      experienceTypeId: "scotchSodaExperiences",
-      localeCode: locale || "nl",
-      slug: slug,
-    });
+    try {
+      const experienceEntry = await fetchBySlug({
+        client,
+        experienceTypeId: "scotchSodaExperiences",
+        localeCode: locale || "nl",
+        slug: slug,
+      });
 
-    if (!experienceEntry) {
+      if (!experienceEntry) {
+        return {
+          notFound: true,
+        };
+      }
+
+      return {
+        props: {
+          pageData: null,
+          experienceEntryJSON: JSON.stringify(experienceEntry),
+          locale: "en",
+        },
+      };
+    } catch (error) {
+      console.error("Error fetching experience data:", error);
       return {
         notFound: true,
       };
     }
-
-    return {
-      props: {
-        pageData,
-        experienceEntryJSON: JSON.stringify(experienceEntry),
-        locale: "en",
-      },
-    };
-  } else {
-    return;
   }
+
+  return {
+    props: {
+      pageData,
+      locale: "en",
+    },
+  };
 };
 
 function ExperienceBuilderPage({
@@ -52,17 +70,30 @@ function ExperienceBuilderPage({
   experienceEntryJSON,
   locale,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  if (pageData) {
+    return (
+      <>
+        <Layout>
+          <div className={styles.contentfulContent}>
+            <h1>{pageData.fields.title}</h1>
+          </div>
+        </Layout>
+      </>
+    );
+  }
+
   const experience = createExperience(experienceEntryJSON);
 
+  if (!experience) {
+    console.log("Geen experience");
+  }
+
   return (
-    <Layout>
-      {!pageData && <ExperienceRoot experience={experience} locale={locale} />}
-      {pageData && (
-        <div className={styles.contentfulContent}>
-          <h1>{pageData.fields.title}</h1>
-        </div>
-      )}
-    </Layout>
+    <>
+      <Layout>
+        <ExperienceRoot experience={experience} locale={locale} />
+      </Layout>
+    </>
   );
 }
 
