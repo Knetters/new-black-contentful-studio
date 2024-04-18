@@ -1,31 +1,25 @@
 import Layout from "../components/Layout";
 import styles from "@/styles/Home.module.css";
 import React from "react";
-import { fetchEntryBySlug } from "@/utils/contentful";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { ParsedUrlQuery } from "querystring";
 import {
   createExperience,
   fetchBySlug,
   ExperienceRoot,
 } from "@contentful/experiences-sdk-react";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { ParsedUrlQuery } from "querystring";
+
 import { client } from "../contentfulClient";
+import "../registeredComponents";
+import "../registeredTokens";
+import { fetchEntryBySlug } from "@/utils/contentful";
 
 export const getServerSideProps = async ({
   params,
   locale,
 }: GetServerSidePropsContext<ParsedUrlQuery>) => {
   const { slug } = params as { slug: string };
-  let pageData = null;
-
-  try {
-    pageData = await fetchEntryBySlug("page", slug);
-  } catch (error) {
-    console.error("Error fetching page data:", error);
-    return {
-      notFound: true,
-    };
-  }
+  const pageData = await fetchEntryBySlug("page", slug);
 
   if (!pageData) {
     try {
@@ -49,20 +43,21 @@ export const getServerSideProps = async ({
           locale: "en",
         },
       };
-    } catch (error) {
-      console.error("Error fetching experience data:", error);
+    } catch (e) {
+      console.error("Error fetching data:", e);
+
       return {
         notFound: true,
       };
     }
+  } else {
+    return {
+      props: {
+        pageData,
+        locale: "en",
+      },
+    };
   }
-
-  return {
-    props: {
-      pageData,
-      locale: "en",
-    },
-  };
 };
 
 function ExperienceBuilderPage({
@@ -70,30 +65,20 @@ function ExperienceBuilderPage({
   experienceEntryJSON,
   locale,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  if (pageData) {
-    return (
-      <>
-        <Layout>
-          <div className={styles.contentfulContent}>
-            <h1>{pageData.fields.title}</h1>
-          </div>
-        </Layout>
-      </>
-    );
-  }
-
-  const experience = createExperience(experienceEntryJSON);
-
-  if (!experience) {
-    console.log("Geen experience");
+  let experience = null;
+  if (experienceEntryJSON) {
+    experience = createExperience(experienceEntryJSON);
   }
 
   return (
-    <>
-      <Layout>
-        <ExperienceRoot experience={experience} locale={locale} />
-      </Layout>
-    </>
+    <Layout>
+      {experience && <ExperienceRoot experience={experience} locale={locale} />}
+      {pageData && (
+        <div className={styles.contentfulContent}>
+          <h1>{pageData.fields.title}</h1>
+        </div>
+      )}
+    </Layout>
   );
 }
 
