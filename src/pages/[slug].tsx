@@ -54,7 +54,7 @@ export const getServerSideProps = async ({
       : null;
   } catch (error) {
     // Handle error if experience entry fetching fails
-    console.log("No experience");
+    console.log(`No experience found for page with slug ${slug}.`);
   }
 
   if (!pageData && !experienceEntryJSON) {
