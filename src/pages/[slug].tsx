@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import styles from "@/styles/Home.module.css";
-import React, { useEffect } from "react";
+import React from "react";
 import {
   createExperience,
   fetchBySlug,
@@ -13,6 +13,22 @@ import { client } from "../contentfulClient";
 import "../registeredComponents";
 import "../registeredTokens";
 import { fetchEntryBySlug } from "@/utils/contentful";
+
+// Save the original console.error method
+const originalError = console.error;
+
+// Override console.error to suppress useLayoutEffect warnings
+console.error = (...args) => {
+  if (
+    args &&
+    args[0] &&
+    typeof args[0] === "string" &&
+    args[0].includes("useLayoutEffect")
+  ) {
+    return;
+  }
+  originalError.apply(console, args);
+};
 
 export const getServerSideProps = async ({
   params,
@@ -72,8 +88,12 @@ function ExperienceBuilderPage({
     <Layout>
       {pageData && (
         <div className={styles.contentfulContent}>
-          <h1>{pageData.fields.title}</h1>
-          <p>{pageData.fields.text}</p>
+          {typeof pageData.fields.title === "string" && (
+            <h1>{pageData.fields.title}</h1>
+          )}
+          {typeof pageData.fields.text === "string" && (
+            <p>{pageData.fields.text}</p>
+          )}
         </div>
       )}
       {experience && <ExperienceRoot experience={experience} locale={locale} />}
