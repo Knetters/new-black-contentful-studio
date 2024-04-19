@@ -24,10 +24,8 @@ export const getServerSideProps = async ({
   let pageData = null;
   let experienceEntryJSON = null;
 
-  // Fetch page data
   pageData = await fetchEntryBySlug("page", slug, lang);
 
-  // Fetch experience entry regardless of page data existence
   try {
     const experienceEntry = await fetchBySlug({
       client,
@@ -40,10 +38,9 @@ export const getServerSideProps = async ({
       : null;
   } catch (error) {
     // Handle error if experience entry fetching fails
-    console.error("Error fetching experience entry:", error);
+    console.log("No experience");
   }
 
-  // If neither page data nor experience entry exist, return notFound
   if (!pageData && !experienceEntryJSON) {
     return {
       notFound: true,
