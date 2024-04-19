@@ -20,45 +20,43 @@ export const getServerSideProps = async ({
 }: GetServerSidePropsContext<ParsedUrlQuery>) => {
   const lang: string = locale || "en";
   const { slug } = params as { slug: string };
-  const pageData = await fetchEntryBySlug("page", slug, lang);
 
-  if (!pageData) {
-    try {
-      const experienceEntry = await fetchBySlug({
-        client,
-        experienceTypeId: "scotchSodaExperiences",
-        localeCode: lang,
-        slug: slug,
-      });
+  let pageData = null;
+  let experienceEntryJSON = null;
 
-      if (!experienceEntry) {
-        return {
-          notFound: true,
-        };
-      }
+  // Fetch page data
+  pageData = await fetchEntryBySlug("page", slug, lang);
 
-      return {
-        props: {
-          pageData: null,
-          experienceEntryJSON: JSON.stringify(experienceEntry),
-          locale: lang,
-        },
-      };
-    } catch (e) {
-      console.error("Error fetching data:", e);
+  // Fetch experience entry regardless of page data existence
+  try {
+    const experienceEntry = await fetchBySlug({
+      client,
+      experienceTypeId: "scotchSodaExperiences",
+      localeCode: lang,
+      slug: slug,
+    });
+    experienceEntryJSON = experienceEntry
+      ? JSON.stringify(experienceEntry)
+      : null;
+  } catch (error) {
+    // Handle error if experience entry fetching fails
+    console.error("Error fetching experience entry:", error);
+  }
 
-      return {
-        notFound: true,
-      };
-    }
-  } else {
+  // If neither page data nor experience entry exist, return notFound
+  if (!pageData && !experienceEntryJSON) {
     return {
-      props: {
-        pageData,
-        locale: lang,
-      },
+      notFound: true,
     };
   }
+
+  return {
+    props: {
+      pageData: pageData ? pageData : null,
+      experienceEntryJSON: experienceEntryJSON,
+      locale: lang,
+    },
+  };
 };
 
 function ExperienceBuilderPage({
@@ -67,21 +65,21 @@ function ExperienceBuilderPage({
   locale,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const lang: string = locale || "en";
+
   let experience = null;
   if (experienceEntryJSON) {
     experience = createExperience(experienceEntryJSON);
   }
-  console.log(lang);
-  console.log(pageData);
+
   return (
     <Layout>
-      {experience && <ExperienceRoot experience={experience} locale={locale} />}
       {pageData && (
         <div className={styles.contentfulContent}>
           <h1>{pageData.fields.title}</h1>
           <p>{pageData.fields.text}</p>
         </div>
       )}
+      {experience && <ExperienceRoot experience={experience} locale={locale} />}
     </Layout>
   );
 }
