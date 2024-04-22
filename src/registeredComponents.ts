@@ -9,6 +9,7 @@ import { FaqContainer } from '../lib/components/FaqContainer';
 import { FaqItem } from '../lib/components/FaqItem';
 import { Footer } from '../lib/components/Footer';
 import { CallToAction } from '../lib/components/CallToAction';
+import { ActionBanner } from '../lib/components/ActionBanner';
 
 defineComponents([
   {
@@ -30,7 +31,7 @@ defineComponents([
           defaultValue: 'creme',
           group: 'style',
         }
-      },
+      }
     },
   },
   {
@@ -242,6 +243,40 @@ defineComponents([
       children: true,
     },
     options: { wrapComponent: false }
+  },
+  {
+    component: ActionBanner,
+    definition: {
+      id: 'actionbanner',
+      name: 'Action Banner',
+      category: 'UI',
+      builtInStlyes: ['cfMargin', 'cfWidth'],
+      variables: {
+        title: {
+          displayName: 'Title',
+          type: 'Text',
+          defaultValue: 'Title',
+        },
+        imageURL: {
+          displayName: 'Image',
+          type: 'Media',
+        },
+        cfWidth: {
+          displayName: 'Width',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '100%'
+        },
+        cfHeight: {
+          displayName: 'Height',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '30rem'
+        },
+      },
+      children: true,
+    },
+    options: { wrapComponent: false },
   },
 ]);
 

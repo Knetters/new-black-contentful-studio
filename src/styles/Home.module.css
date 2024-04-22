@@ -361,3 +361,33 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+/* Action banner */
+.abRow {
+  width: 100%;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--bg-creme);
+  padding: 1rem;
+  object-fit: cover;
+  background-position: center;
+}
+
+.abRow h2, .abRow p {
+  color: var(--f-white);
+  text-shadow: 0 0 10px var(--f-black);
+}
+
+.abRow h2 {
+  font-size: 6rem;
+}
+
+.extraContent {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  text-align: center;
+}

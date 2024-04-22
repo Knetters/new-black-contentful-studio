@@ -84,8 +84,11 @@ function ExperienceBuilderPage({
     experience = createExperience(experienceEntryJSON);
   }
 
+  console.log(experience);
+
   return (
     <Layout>
+      {experience && <ExperienceRoot experience={experience} locale={locale} />}
       {pageData && (
         <div className={styles.contentfulContent}>
           {typeof pageData.fields.title === "string" && (
@@ -94,9 +97,9 @@ function ExperienceBuilderPage({
           {typeof pageData.fields.text === "string" && (
             <p>{pageData.fields.text}</p>
           )}
+          {/* {pageData.fields.modules} */}
         </div>
       )}
-      {experience && <ExperienceRoot experience={experience} locale={locale} />}
     </Layout>
   );
 }
