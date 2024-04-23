@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 
@@ -6,6 +7,7 @@ interface CallToActionComponentProps {
   message: string;
   label: string;
   url: string;
+  className?: string; // Add className property
 }
 
 export const CallToAction: React.FC<CallToActionComponentProps> = ({
@@ -13,9 +15,10 @@ export const CallToAction: React.FC<CallToActionComponentProps> = ({
   message,
   label,
   url,
+  className,
 }) => {
   return (
-    <div className={styles.ctaRow}>
+    <div className={`${styles.ctaRow} ${className}`}>
       <div className={styles.ctaContent}>
         <h2>{title}</h2>
         <p>{message}</p>

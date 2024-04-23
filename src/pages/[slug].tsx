@@ -84,8 +84,6 @@ function ExperienceBuilderPage({
     experience = createExperience(experienceEntryJSON);
   }
 
-  console.log(experience);
-
   return (
     <Layout>
       {experience && <ExperienceRoot experience={experience} locale={locale} />}

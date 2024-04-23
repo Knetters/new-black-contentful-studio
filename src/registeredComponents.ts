@@ -211,7 +211,7 @@ defineComponents([
       id: 'calltoaction',
       name: 'Call to action',
       category: 'UI',
-      builtInStlyes: ['cfMargin', 'cfWidth'],
+      builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor'],
       variables: {
         title: {
           displayName: 'Title',
@@ -238,6 +238,12 @@ defineComponents([
           type: 'Text',
           group: 'style',
           defaultValue: '100%'
+        },
+        cfBackgroundColor: {
+          displayName: 'Background',
+          type: 'Text',
+          defaultValue: 'yellow',
+          group: 'style',
         }
       },
       children: true,
