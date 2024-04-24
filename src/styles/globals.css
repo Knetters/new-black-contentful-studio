@@ -53,7 +53,18 @@ a {
   color: var(--f-gold);
 }
 
-b {
-  display: inline-block;
-  margin: 2rem 0rem 1rem 0rem;
+.cf-richtext p {
+  margin: 2rem 0rem;
+}
+
+.cf-richtext li {
+  margin: -2rem 0;
+}
+
+.cf-richtext li:first-child {
+  margin-top: -1rem;
+}
+
+.cf-richtext li:last-child {
+  margin-bottom: -1rem;
 }
