@@ -9,9 +9,7 @@
 
 /* buttons  */
 .UIbutton {
-  padding: 1rem;
-  background-color: var(--bg-black);
-  color: var(--f-white);
+  cursor: pointer;
 }
 
 /* Product grid */
@@ -390,4 +388,9 @@
   gap: 1rem;
   justify-content: center;
   text-align: center;
+}
+
+/* Content */
+.contentContainer h1, .contentContainer h2, .contentContainer h3, .contentContainer h4, .contentContainer h5, .contentContainer h6 {
+  background-color: red;
 }

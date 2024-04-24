@@ -7,6 +7,7 @@ interface FaqContainerComponentProps {
   label: string;
   url: string;
   children: ReactNode;
+  className?: string;
 }
 
 export const FaqContainer: React.FC<FaqContainerComponentProps> = ({
@@ -14,6 +15,7 @@ export const FaqContainer: React.FC<FaqContainerComponentProps> = ({
   label,
   url,
   children,
+  className,
 }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -22,7 +24,7 @@ export const FaqContainer: React.FC<FaqContainerComponentProps> = ({
   };
 
   return (
-    <div className={styles.faq}>
+    <div className={`${styles.faq} ${className}`}>
       {title !== "" && <h2 className={styles.faqTitle}>{title}</h2>}
       <section className={styles.faqContainer}>
         {React.Children.map(children, (child, index) => {

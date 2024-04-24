@@ -7,7 +7,7 @@ interface CallToActionComponentProps {
   message: string;
   label: string;
   url: string;
-  className?: string; // Add className property
+  className?: string;
 }
 
 export const CallToAction: React.FC<CallToActionComponentProps> = ({

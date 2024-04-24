@@ -48,3 +48,12 @@ main {
   max-width: 120rem;
   margin: 0 auto;
 }
+
+a {
+  color: var(--f-gold);
+}
+
+b {
+  display: inline-block;
+  margin: 2rem 0rem 1rem 0rem;
+}

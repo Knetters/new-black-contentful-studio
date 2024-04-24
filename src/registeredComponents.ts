@@ -1,16 +1,10 @@
 import { defineComponents } from '@contentful/experiences-sdk-react';
 import { Button } from '../lib/components/Button';
-import { TopLine } from '../lib/components/TopLine';
-import { LogoBar } from '../lib/components/LogoBar';
-import { Navbar } from '../lib/components/Navbar';
 import { Message } from '../lib/components/Message';
-import { TextBlock } from '../lib/components/TextBlock';
 import { FaqContainer } from '../lib/components/FaqContainer';
 import { FaqItem } from '../lib/components/FaqItem';
-import { Footer } from '../lib/components/Footer';
 import { CallToAction } from '../lib/components/CallToAction';
 import { ActionBanner } from '../lib/components/ActionBanner';
-
 defineComponents([
   {
     component: Button,
@@ -18,7 +12,7 @@ defineComponents([
       id: 'button',
       name: 'Button',
       category: 'UI',
-      builtInStlyes: ['cfMargin', 'cfPadding', 'cfBackgroundColor'],
+      builtInStlyes: ['cfMargin', 'cfPadding', 'cfBackgroundColor', 'cfWidth', 'cfTextColor'],
       variables: {
         text: {
           displayName: 'Text',
@@ -26,63 +20,30 @@ defineComponents([
           defaultValue: 'Click me!',
         },
         cfBackgroundColor: {
-          displayName: 'Background',
+          displayName: 'Background color',
           type: 'Text',
-          defaultValue: 'creme',
           group: 'style',
-        }
+          defaultValue: 'white',
+        },
+        cfWidth: {
+          displayName: 'Size',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '100%',
+        },
+        cfPadding: {
+          displayName: 'Padding',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '1rem',
+        },
+        cfTextColor: {
+          displayName: 'Text color',
+          type: 'Text',
+          group: 'style',
+          defaultValue: 'black',
+        },
       }
-    },
-  },
-  {
-    component: TopLine,
-    definition: {
-      id: 'topline',
-      name: 'Top line',
-      category: 'Header',
-      variables: {
-        text: {
-          displayName: 'Text',
-          type: 'Text',
-          defaultValue: 'Gratis standaard verzending vanaf €50 | Retourneren binnen 30 dagen',
-        },
-      },
-    },
-  },
-  {
-    component: LogoBar,
-    definition: {
-      id: 'logobar',
-      name: 'Logo bar',
-      category: 'Header',
-      variables: {
-        text: {
-          displayName: 'Text',
-          type: 'Text',
-          defaultValue: '',
-        },
-      },
-    },
-  },
-  {
-    component: Navbar,
-    definition: {
-      id: 'navbar',
-      name: 'Nav bar',
-      category: 'Header',
-      variables: {
-        links: {
-          displayName: 'Links',
-          type: 'Object',
-          defaultValue: [{
-            label: 'Veelgestelde vragen',
-            url: '/faq'
-          },{
-            label: 'test',
-            url: '/test'
-          }],
-        },
-      },
     },
   },
   {
@@ -107,26 +68,6 @@ defineComponents([
           type: 'Text',
           defaultValue: 'link',
         },
-      },
-    },
-  },
-  {
-    component: TextBlock,
-    definition: {
-      id: 'textblock',
-      name: 'TextBlock',
-      category: 'Essentials',
-      variables: {
-        title: {
-          displayName: 'Title',
-          type: 'Text',
-          defaultValue: 'Title',
-        },
-        content: {
-          displayName: 'Content',
-          type: 'Text',
-          defaultValue: 'Content',
-        }
       },
     },
   },
@@ -186,26 +127,6 @@ defineComponents([
     options: { wrapComponent: false }
   },
   {
-    component: Footer,
-    definition: {
-      id: 'footer',
-      name: 'Footer',
-      category: 'Footer',
-      variables: {
-        title: {
-          displayName: 'Title',
-          type: 'Text',
-          defaultValue: 'Title',
-        },
-        content: {
-          displayName: 'Content',
-          type: 'Text',
-          defaultValue: 'Content',
-        }
-      },
-    },
-  },
-  {
     component: CallToAction,
     definition: {
       id: 'calltoaction',
@@ -256,7 +177,7 @@ defineComponents([
       id: 'actionbanner',
       name: 'Action Banner',
       category: 'UI',
-      builtInStlyes: ['cfMargin', 'cfWidth'],
+      builtInStlyes: ['cfMargin', 'cfWidth', 'cfFontSize'],
       variables: {
         title: {
           displayName: 'Title',
@@ -278,6 +199,12 @@ defineComponents([
           type: 'Text',
           group: 'style',
           defaultValue: '30rem'
+        },
+        cfFontSize: {
+          displayName: 'Text size',
+          type: 'Text',
+          group: 'style',
+          defaultValue: 'LG'
         },
       },
       children: true,
