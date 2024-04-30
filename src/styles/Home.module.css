@@ -394,3 +394,29 @@
 .contentContainer h1, .contentContainer h2, .contentContainer h3, .contentContainer h4, .contentContainer h5, .contentContainer h6 {
   background-color: red;
 }
+
+/* Featured product grid */
+.featuredProductsRow {
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+  justify-content: space-between;
+  list-style: none;
+}
+
+/* Featured products */
+.productContainer {
+  width: 100%;
+  height: 30rem;
+}
+
+.productImage {
+  background-color: var(--bg-product);
+  object-fit: cover;
+  height: 100%;
+}
+
+.productContainer h2, .productContainer span {
+  color: var(--f-black);
+  font-weight: 300;
+}

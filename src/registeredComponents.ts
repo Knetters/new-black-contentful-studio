@@ -5,6 +5,9 @@ import { FaqContainer } from '../lib/components/FaqContainer';
 import { FaqItem } from '../lib/components/FaqItem';
 import { CallToAction } from '../lib/components/CallToAction';
 import { ActionBanner } from '../lib/components/ActionBanner';
+import { featuredProduct } from '../lib/components/featuredProduct';
+import { featuredProductGrid } from '../lib/components/featuredProductGrid';
+
 defineComponents([
   {
     component: Button,
@@ -206,6 +209,79 @@ defineComponents([
           group: 'style',
           defaultValue: 'LG'
         },
+      },
+      children: true,
+    },
+    options: { wrapComponent: false },
+  },
+  {
+    component: featuredProduct,
+    definition: {
+      id: 'featuredproduct',
+      name: 'Featured Product',
+      category: 'UI',
+      builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor'],
+      variables: {
+        title: {
+          displayName: 'Title',
+          type: 'Text',
+          defaultValue: 'Title',
+        },
+        slug: {
+          displayName: 'Slug',
+          type: 'Text',
+          defaultValue: 'slug',
+        },
+        imageURL: {
+          displayName: 'Image',
+          type: 'Media',
+        },
+        price: {
+          displayName: 'Price',
+          type: 'Number',
+          defaultValue: '0.00',
+        },
+        cfWidth: {
+          displayName: 'Width',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '100%'
+        },
+        cfHeight: {
+          displayName: 'Height',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '30rem'
+        },
+      },
+    },
+    options: { wrapComponent: false },
+  },
+  {
+    component: featuredProductGrid,
+    definition: {
+      id: 'featuredproductgrid',
+      name: 'Featured Product Grid',
+      category: 'UI',
+      builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor' ],
+      variables: {
+        title: {
+          displayName: 'Title',
+          type: 'Text',
+          defaultValue: 'Title',
+        },
+        cfWidth: {
+          displayName: 'Width',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '100%'
+        },
+        cfHeight: {
+          displayName: 'Height',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '30rem'
+        }
       },
       children: true,
     },

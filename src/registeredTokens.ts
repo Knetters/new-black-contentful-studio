@@ -9,7 +9,8 @@ defineDesignTokens({
     beige: '#f4efe7',
     darkBrown: '#1d1e1d',
     creme: '#dbc9af',
-    yellow: '#fffad9'
+    yellow: '#fffad9',
+    product: '#edeee6'
   },
   widths: { XS: '400px', S: '800px', M: '1200px', L: '1980px' },
   fontSize: { XS: '12px', SM: '14px', MD: '16px', LG: '24px', XL: '32px' },

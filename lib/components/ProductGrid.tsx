@@ -1,29 +1,31 @@
+import React from "react";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 
-const Navbar = () => {
+interface productGridComponentProps {
+  title: string;
+  message: string;
+  label: string;
+  url: string;
+  className?: string;
+}
+
+export const productGrid: React.FC<productGridComponentProps> = ({
+  title,
+  message,
+  label,
+  url,
+  className,
+}) => {
   return (
-    <nav className={styles.nav}>
-      <Link className={`${styles.navItem} ${styles.active}`} href="/about">
-        Whats new
+    <div className={`${styles.ctaRow} ${className}`}>
+      <div className={styles.ctaContent}>
+        <h2>{title}</h2>
+        <p>{message}</p>
+      </div>
+      <Link className={styles.ctaLink} href={url}>
+        <span>{label}</span>
       </Link>
-      <Link className={styles.navItem} href="/about">
-        Dames
-      </Link>
-      <Link className={styles.navItem} href="/about">
-        Heren
-      </Link>
-      <Link className={styles.navItem} href="/about">
-        Kinderen
-      </Link>
-      <Link className={styles.navItem} href="/about">
-        Last change
-      </Link>
-      <Link className={styles.navItem} href="/about">
-        Outlet
-      </Link>
-    </nav>
+    </div>
   );
 };
-
-export default Navbar;
