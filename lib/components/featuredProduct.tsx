@@ -19,15 +19,6 @@ export const featuredProduct: React.FC<featuredProductComponentProps> = ({
   price,
   className,
 }) => {
-  // Log data when the component is rendered
-  console.log("Featured Product Component Data:", {
-    title,
-    slug,
-    imageURL,
-    price,
-    className,
-  });
-
   return (
     <li className={`${styles.productContainer} ${className}`}>
       <Link href={`/product/${slug}`}>

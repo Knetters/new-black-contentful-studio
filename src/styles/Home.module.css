@@ -385,6 +385,18 @@
   list-style: none;
 }
 
+@media screen and (max-width: 1024px) {
+  .featuredProductsGrid {
+    grid-template-columns: repeat(3, 1fr); /* Four columns per row */
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .featuredProductsGrid {
+    grid-template-columns: repeat(2, 1fr); /* Four columns per row */
+  }
+}
+
 /* Featured products */
 .productContainer {
   width: 100%;
@@ -395,6 +407,7 @@
   background-color: var(--bg-product);
   object-fit: cover;
   height: 100%;
+  border: none;
 }
 
 .productContainer * {
