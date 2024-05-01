@@ -13,7 +13,7 @@ export const featuredProductGrid: React.FC<
   return (
     <div className={`${styles.featuredProductsContainer} ${className}`}>
       <h2>{title}</h2>
-      <ul className={styles.featuredProductsRow}>{children}</ul>
+      <ul className={styles.featuredProductsGrid}>{children}</ul>
     </div>
   );
 };

@@ -201,7 +201,7 @@ defineComponents([
           displayName: 'Height',
           type: 'Text',
           group: 'style',
-          defaultValue: '30rem'
+          defaultValue: '40rem'
         },
         cfFontSize: {
           displayName: 'Text size',
@@ -251,7 +251,7 @@ defineComponents([
           displayName: 'Height',
           type: 'Text',
           group: 'style',
-          defaultValue: '30rem'
+          defaultValue: '40rem'
         },
       },
     },
@@ -275,12 +275,6 @@ defineComponents([
           type: 'Text',
           group: 'style',
           defaultValue: '100%'
-        },
-        cfHeight: {
-          displayName: 'Height',
-          type: 'Text',
-          group: 'style',
-          defaultValue: '30rem'
         }
       },
       children: true,
