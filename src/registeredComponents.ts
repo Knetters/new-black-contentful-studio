@@ -46,8 +46,9 @@ defineComponents([
           group: 'style',
           defaultValue: 'black',
         },
-      }
+      },
     },
+    options: { wrapComponent: false }
   },
   {
     component: Message,
