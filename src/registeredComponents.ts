@@ -221,7 +221,7 @@ defineComponents([
       id: 'featuredproduct',
       name: 'Featured Product',
       category: 'UI',
-      builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor', 'cfImageAsset'],
+      builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor', 'cfImageAsset', 'cfImageOptions'],
       variables: {
         title: {
           displayName: 'Title',
