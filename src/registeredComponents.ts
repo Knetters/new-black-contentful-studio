@@ -221,7 +221,7 @@ defineComponents([
       id: 'featuredproduct',
       name: 'Featured Product',
       category: 'UI',
-      builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor'],
+      builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor', 'cfImageAsset'],
       variables: {
         title: {
           displayName: 'Title',
@@ -236,6 +236,11 @@ defineComponents([
         imageURL: {
           displayName: 'Image',
           type: 'Media',
+        },
+        cfImageAsset: {
+          displayName: 'Product Image',
+          type: 'Media',
+          defaultValue: '',
         },
         price: {
           displayName: 'Price',
