@@ -41,7 +41,8 @@ export const getServerSideProps = async ({
   let experienceEntryJSON = null;
 
   // First try fetching using langSlug
-  let langSlug = `${slug}-${lang}`.toLowerCase();
+  let langSlug = `${slug}-${lang.substring(0, 2)}`.toLowerCase();
+
   try {
     const experienceEntry = await fetchBySlug({
       client,
