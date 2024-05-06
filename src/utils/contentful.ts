@@ -19,3 +19,43 @@ export async function fetchEntryBySlug(contentType: string, slug: string, locale
     return null;
   }
 }
+
+export async function fetchProductIds(locale: string) {
+  try {
+    const entries = await client.getEntries({
+      content_type: 'elementGridPin',
+      locale: locale
+    });
+
+    return entries.items;
+  } catch (error) {
+    console.error('Error fetching product entries:', error);
+    return [];
+  }
+}
+
+export async function fetchAllProductEntries(locale: string) {
+  try {
+    const entries = await client.getEntries({
+      content_type: 'products',
+      locale: locale
+    });
+
+    return entries.items;
+  } catch (error) {
+    console.error('Error fetching product entries:', error);
+    return [];
+  }
+}
+
+export async function fetchProducts(fetchProductIds: string[], locale: string) {
+  try {
+    const products = await fetchAllProductEntries(locale);
+    const filteredProducts = products.filter(product => fetchProductIds.includes(product.sys.id));
+    console.log(filteredProducts)
+    return filteredProducts;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return [];
+  }
+}

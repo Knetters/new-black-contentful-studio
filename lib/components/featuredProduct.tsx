@@ -13,7 +13,7 @@ interface featuredProductComponentProps {
   cfImageAsset?: any;
 }
 
-export const featuredProduct: React.FC<featuredProductComponentProps> = ({
+export const FeaturedProduct: React.FC<featuredProductComponentProps> = ({
   title,
   slug,
   imageURL,

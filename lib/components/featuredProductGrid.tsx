@@ -7,13 +7,13 @@ interface featuredProductGridComponentProps {
   className?: string;
 }
 
-export const featuredProductGrid: React.FC<
+export const FeaturedProductGrid: React.FC<
   featuredProductGridComponentProps
 > = ({ title, children, className }) => {
   return (
     <div className={`${styles.featuredProductsContainer} ${className}`}>
       <h2>{title}</h2>
-      <ul className={styles.featuredProductsGrid}>{children}</ul>
+      <ul className={styles.productsGrid}>{children}</ul>
     </div>
   );
 };

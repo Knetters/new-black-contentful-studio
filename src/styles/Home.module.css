@@ -377,22 +377,23 @@
 }
 
 /* Featured product grid */
-.featuredProductsGrid {
+.productsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Four columns per row */
-  gap: 10rem 2rem;
+  gap: 8rem 2rem;
   width: 100%;
   list-style: none;
+  margin-bottom: 8rem;
 }
 
 @media screen and (max-width: 1024px) {
-  .featuredProductsGrid {
+  .productsGrid {
     grid-template-columns: repeat(3, 1fr); /* Four columns per row */
   }
 }
 
 @media screen and (max-width: 900px) {
-  .featuredProductsGrid {
+  .productsGrid {
     grid-template-columns: repeat(2, 1fr); /* Four columns per row */
   }
 }

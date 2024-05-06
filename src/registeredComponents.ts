@@ -5,8 +5,9 @@ import { FaqContainer } from '../lib/components/FaqContainer';
 import { FaqItem } from '../lib/components/FaqItem';
 import { CallToAction } from '../lib/components/CallToAction';
 import { ActionBanner } from '../lib/components/ActionBanner';
-import { featuredProduct } from '../lib/components/featuredProduct';
-import { featuredProductGrid } from '../lib/components/featuredProductGrid';
+import { FeaturedProduct } from '../lib/components/featuredProduct';
+import { FeaturedProductGrid } from '../lib/components/featuredProductGrid';
+import { ProductGrid } from '../lib/components/ProductGrid';
 
 defineComponents([
   {
@@ -216,7 +217,7 @@ defineComponents([
     options: { wrapComponent: false },
   },
   {
-    component: featuredProduct,
+    component: FeaturedProduct,
     definition: {
       id: 'featuredproduct',
       name: 'Featured Product',
@@ -264,7 +265,7 @@ defineComponents([
     options: { wrapComponent: false },
   },
   {
-    component: featuredProductGrid,
+    component: FeaturedProductGrid,
     definition: {
       id: 'featuredproductgrid',
       name: 'Featured Product Grid',
@@ -275,6 +276,38 @@ defineComponents([
           displayName: 'Title',
           type: 'Text',
           defaultValue: 'Title',
+        },
+        cfWidth: {
+          displayName: 'Width',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '100%'
+        }
+      },
+      children: true,
+    },
+    options: { wrapComponent: false },
+  },
+  {
+    component: ProductGrid,
+    definition: {
+      id: 'productgrid',
+      name: 'Product Grid',
+      category: 'UI',
+      builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor' ],
+      variables: {
+        title: {
+          displayName: 'Title',
+          type: 'Text',
+          defaultValue: 'Product grid',
+        },
+        slug: {
+          displayName: 'Slug',
+          type: 'Text',
+        },
+        productList: {
+          displayName: 'Product list',
+          type: 'Text',
         },
         cfWidth: {
           displayName: 'Width',
