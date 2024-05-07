@@ -1,4 +1,5 @@
 import { createClient } from 'contentful';
+import { Entry } from 'contentful';
 
 const client = createClient({
   space: 'vkwyrakkzeu8',
@@ -9,7 +10,7 @@ export async function fetchEntryBySlug(contentType: string, slug: string, locale
   const entries = await client.getEntries({
     content_type: contentType,
     'fields.slug': slug,
-    locale: locale // Pass locale to the query
+    locale: locale
   });
 
   if (entries.items.length > 0) {
@@ -50,12 +51,27 @@ export async function fetchAllProductEntries(locale: string) {
 
 export async function fetchProducts(fetchProductIds: string[], locale: string) {
   try {
-    const products = await fetchAllProductEntries(locale);
-    const filteredProducts = products.filter(product => fetchProductIds.includes(product.sys.id));
-    console.log(filteredProducts)
+    const products: Entry<any>[] = await fetchAllProductEntries(locale);
+
+    const filteredProducts = products.filter(product => {
+      if (product.fields.id !== null && product.fields.id !== undefined) {
+        const productIdString = product.fields.id.toString();
+        return fetchProductIds.includes(productIdString);
+      }
+      return false;
+    }).map(product => ({
+      id: product.sys.id,
+      title: product.fields.title,
+      slug: product.fields.slug,
+      price: product.fields.price,
+      imageURL: product.fields.image.fields.file.url,
+    }));
+
     return filteredProducts;
   } catch (error) {
     console.error('Error fetching products:', error);
     return [];
   }
 }
+
+

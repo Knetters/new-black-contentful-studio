@@ -100,6 +100,7 @@ export const ProductGrid: React.FC<ProductGridComponentProps> = ({
           const productIds = productIdData.flatMap(
             (entry: ProductId) => entry.ids
           ); // Flatten product IDs array
+          // console.log(productIds);
           const fetchedProducts = await fetchProducts(productIds, "en"); // Fetch products by IDs
           setProducts(fetchedProducts);
         } catch (error) {

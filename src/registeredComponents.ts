@@ -5,8 +5,8 @@ import { FaqContainer } from '../lib/components/FaqContainer';
 import { FaqItem } from '../lib/components/FaqItem';
 import { CallToAction } from '../lib/components/CallToAction';
 import { ActionBanner } from '../lib/components/ActionBanner';
-import { FeaturedProduct } from '../lib/components/featuredProduct';
-import { FeaturedProductGrid } from '../lib/components/featuredProductGrid';
+import { FeaturedProduct } from '../lib/components/FeaturedProduct';
+import { FeaturedProductGrid } from '../lib/components/FeaturedProductGrid';
 import { ProductGrid } from '../lib/components/ProductGrid';
 
 defineComponents([
