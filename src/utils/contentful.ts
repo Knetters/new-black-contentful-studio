@@ -1,5 +1,4 @@
-import { createClient } from 'contentful';
-import { Entry } from 'contentful';
+import { createClient, Entry } from 'contentful';
 
 const client = createClient({
   space: 'vkwyrakkzeu8',
@@ -64,7 +63,7 @@ export async function fetchProducts(fetchProductIds: string[], locale: string) {
       title: product.fields.title,
       slug: product.fields.slug,
       price: product.fields.price,
-      imageURL: product.fields.image.fields.file.url,
+      imageURL: (product.fields.image as { fields: { file: { url: string } } })?.fields.file.url,
     }));
 
     return filteredProducts;

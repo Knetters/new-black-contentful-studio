@@ -386,6 +386,7 @@
   width: 100%;
   list-style: none;
   margin-bottom: 8rem;
+  margin-top: 2rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -456,4 +457,44 @@
   text-align: center;
   width: 100%;
   margin-bottom: 4rem;
+}
+
+/* Filter bar */
+.filterBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: .0625rem solid #e4e4e4;
+  padding-bottom: 3rem;
+}
+
+.filterBar button {
+  cursor: pointer;
+}
+
+.filterList {
+  display: flex;
+  width: 50%;
+  list-style: none;
+  justify-content: space-between;
+}
+
+.filterList button {
+  position: relative;
+}
+
+.filterList button::after {
+  content: "〱";
+  transform: rotate(270deg);
+  position: absolute;
+  bottom: 0;
+  margin-left: .6rem;
+}
+
+.sideButton {
+  font-weight: 500;
+}
+
+.filterBar button {
+  font-size: 1.6rem;
 }

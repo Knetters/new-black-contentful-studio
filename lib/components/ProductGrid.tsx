@@ -8,6 +8,7 @@ import {
 import Link from "next/link";
 import HeartOutline from "@/components/icons/HeartOutline";
 import HeartFilled from "@/components/icons/HeartFilled";
+import FilterBar from "./FilterBar";
 
 interface Product {
   id: string;
@@ -58,7 +59,10 @@ export const ProductGrid: React.FC<ProductGridComponentProps> = ({
           const productIds = productIdData.flatMap(
             (entry: ProductId) => entry.ids
           );
-          fetchedProducts = await fetchProducts(productIds, "en");
+          fetchedProducts = (await fetchProducts(
+            productIds,
+            "en"
+          )) as Product[];
         }
         setProducts(fetchedProducts);
         setProductCount(fetchedProducts.length);
@@ -74,6 +78,7 @@ export const ProductGrid: React.FC<ProductGridComponentProps> = ({
     <div className={className}>
       <h2 className={styles.gridTitle}>{title}</h2>
       <p className={styles.productCount}>{productCount} Artikelen</p>
+      <FilterBar />
       <ul className={styles.productsGrid}>
         {products.map((product) => (
           <li
