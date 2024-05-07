@@ -305,10 +305,6 @@ defineComponents([
           displayName: 'Slug',
           type: 'Text',
         },
-        productList: {
-          displayName: 'Product list',
-          type: 'Text',
-        },
         cfWidth: {
           displayName: 'Width',
           type: 'Text',
