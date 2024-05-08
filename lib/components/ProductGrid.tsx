@@ -5,9 +5,7 @@ import {
   fetchProductIds,
   fetchProducts,
 } from "../../src/utils/contentful";
-import Link from "next/link";
-import HeartOutline from "@/components/icons/HeartOutline";
-import HeartFilled from "@/components/icons/HeartFilled";
+import Product from "./Product";
 import FilterBar from "./FilterBar";
 
 interface Product {
@@ -81,23 +79,14 @@ export const ProductGrid: React.FC<ProductGridComponentProps> = ({
       <FilterBar />
       <ul className={styles.productsGrid}>
         {products.map((product) => (
-          <li
+          <Product
             key={product.id}
-            className={`${styles.productContainer} ${className}`}
-          >
-            <Link href={`/product/${product.slug}`}>
-              <img
-                className={styles.productImage}
-                src={product.imageURL}
-                alt=""
-              />
-              <h2 className={styles.productTitle}>{product.title}</h2>
-              <span className={styles.price}>€ {product.price}</span>
-            </Link>
-            <div className={styles.favoriteIcon}>
-              <HeartOutline />
-            </div>
-          </li>
+            id={product.id}
+            title={product.title}
+            slug={product.slug}
+            price={product.price}
+            imageURL={product.imageURL}
+          />
         ))}
       </ul>
     </div>

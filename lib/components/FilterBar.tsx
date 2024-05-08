@@ -1,10 +1,13 @@
+// import FilterIcon from "@/components/icons/FilterIcon";
+// import SortIcon from "@/components/icons/SortIcon";
 import styles from "@/styles/Home.module.css";
-import Link from "next/link";
 
 const FilterBar = () => {
   return (
     <div className={styles.filterBar}>
-      <button className={styles.sideButton}>Filter</button>
+      <button className={styles.sideButton}>
+        <span className={styles.filterButtonContent}>Filter</span>
+      </button>
       <ul className={styles.filterList}>
         <li>
           <button>Geslacht</button>
@@ -25,7 +28,9 @@ const FilterBar = () => {
           <button>Stijl</button>
         </li>
       </ul>
-      <button>Sorteren</button>
+      <button className={styles.sideButton}>
+        <span className={styles.filterButtonContent}>Sorteren</span>
+      </button>
     </div>
   );
 };

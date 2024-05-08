@@ -221,7 +221,7 @@ defineComponents([
     definition: {
       id: 'featuredproduct',
       name: 'Featured Product',
-      category: 'UI',
+      category: 'Product display',
       builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor', 'cfImageAsset', 'cfImageOptions'],
       variables: {
         title: {
@@ -269,7 +269,7 @@ defineComponents([
     definition: {
       id: 'featuredproductgrid',
       name: 'Featured Product Grid',
-      category: 'UI',
+      category: 'Product display',
       builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor' ],
       variables: {
         title: {
@@ -293,7 +293,7 @@ defineComponents([
     definition: {
       id: 'productgrid',
       name: 'Product Grid',
-      category: 'UI',
+      category: 'Product display',
       builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor' ],
       variables: {
         title: {
@@ -304,6 +304,7 @@ defineComponents([
         slug: {
           displayName: 'Slug',
           type: 'Text',
+          description: "Please provide the product pin's unique identifier that you wish to showcase.",
         },
         cfWidth: {
           displayName: 'Width',
