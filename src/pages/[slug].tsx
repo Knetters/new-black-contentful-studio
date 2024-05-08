@@ -40,22 +40,41 @@ export const getServerSideProps = async ({
   let pageData = null;
   let experienceEntryJSON = null;
 
-  pageData = await fetchEntryBySlug("page", slug, lang);
+  // First try fetching using langSlug
+  let langSlug = `${slug}-${lang.substring(0, 2)}`.toLowerCase();
 
   try {
     const experienceEntry = await fetchBySlug({
       client,
       experienceTypeId: "scotchSodaExperiences",
       localeCode: lang,
-      slug: slug,
+      slug: `${langSlug}`,
     });
     experienceEntryJSON = experienceEntry
       ? JSON.stringify(experienceEntry)
       : null;
   } catch (error) {
-    // Handle error if experience entry fetching fails
-    console.log(`No experience found for page with slug ${slug}.`);
+    // If no experience found for langSlug, fallback to normal slug
+    console.log(
+      `No experience found for page with slug ${langSlug}. Trying without lang slug.`
+    );
+    try {
+      const experienceEntry = await fetchBySlug({
+        client,
+        experienceTypeId: "scotchSodaExperiences",
+        localeCode: lang,
+        slug: `${slug}`,
+      });
+      experienceEntryJSON = experienceEntry
+        ? JSON.stringify(experienceEntry)
+        : null;
+    } catch (error) {
+      console.log(`No experience found for page with slug ${slug}.`);
+    }
   }
+
+  // Fetch page data
+  pageData = await fetchEntryBySlug("page", slug, lang);
 
   if (!pageData && !experienceEntryJSON) {
     return {
