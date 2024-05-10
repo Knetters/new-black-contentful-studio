@@ -382,7 +382,7 @@
 .productsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Four columns per row */
-  gap: 8rem 2rem;
+  gap: 3rem 2rem;
   width: 100%;
   list-style: none;
   margin-bottom: 8rem;
@@ -404,6 +404,7 @@
 /* Featured products */
 .productContainer {
   width: 100%;
+  height: fit-content;
   position: relative;
 }
 
@@ -457,6 +458,8 @@
   text-align: center;
   width: 100%;
   margin-bottom: 4rem;
+  font-size: 1.2rem;
+  font-weight: 200;
 }
 
 /* Filter bar */

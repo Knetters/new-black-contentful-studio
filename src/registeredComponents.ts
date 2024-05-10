@@ -294,7 +294,7 @@ defineComponents([
       id: 'productgrid',
       name: 'Product Grid',
       category: 'Product display',
-      builtInStlyes: ['cfMargin', 'cfWidth', 'cfBackgroundColor' ],
+      builtInStlyes: ['cfMargin', 'cfPadding', 'cfWidth' ],
       variables: {
         title: {
           displayName: 'Title',
@@ -304,7 +304,6 @@ defineComponents([
         slug: {
           displayName: 'Slug',
           type: 'Text',
-          description: "Please provide the product pin's unique identifier that you wish to showcase.",
         },
         cfWidth: {
           displayName: 'Width',

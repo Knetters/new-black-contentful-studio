@@ -23,14 +23,12 @@ interface ProductId {
 interface ProductGridComponentProps {
   title: string;
   slug: string;
-  productList: string;
   className?: string;
 }
 
 export const ProductGrid: React.FC<ProductGridComponentProps> = ({
   title,
   slug,
-  productList,
   className,
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
