@@ -39,6 +39,7 @@ export const ProductGrid: React.FC<ProductGridComponentProps> = ({
       try {
         let fetchedProducts: Product[] = [];
         if (!slug) {
+          console.log("No product grid slug found");
           const entries = await fetchAllProductEntries("en");
           fetchedProducts = entries.map((entry: any) => ({
             id: entry.sys.id,

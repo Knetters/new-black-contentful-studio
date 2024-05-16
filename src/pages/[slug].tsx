@@ -41,7 +41,8 @@ export const getServerSideProps = async ({
   let experienceEntryJSON = null;
 
   // First try fetching using langSlug
-  let langSlug = `${slug}-${lang.substring(0, 2)}`.toLowerCase();
+  let langSlug =
+    `<span class="math-inline">\{slug\}\-</span>{lang.substring(0, 2)}`.toLowerCase();
 
   try {
     const experienceEntry = await fetchBySlug({
@@ -82,11 +83,17 @@ export const getServerSideProps = async ({
     };
   }
 
+  const urlParts = slug.split("/");
+  const dynamicWord = urlParts[urlParts.length - 1]; // Get the last word
+
+  console.log(`The dynamic city is: ${dynamicWord}`); // Log the dynamic word
+
   return {
     props: {
       pageData: pageData ? pageData : null,
       experienceEntryJSON: experienceEntryJSON,
       locale: lang,
+      dynamicWord, // Pass the dynamic word as a prop
     },
   };
 };
@@ -95,6 +102,7 @@ function ExperienceBuilderPage({
   pageData,
   experienceEntryJSON,
   locale,
+  dynamicWord,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const lang: string = locale || "en";
 
@@ -117,6 +125,8 @@ function ExperienceBuilderPage({
           {/* {pageData.fields.modules} */}
         </div>
       )}
+      {/* You can now access the dynamicWord prop here */}
+      <p>The dynamic city from URL: {dynamicWord}</p>
     </Layout>
   );
 }
