@@ -54,7 +54,6 @@ function ExperienceBuilderPage({
 
   return (
     <Layout>
-      <div>City: {city}</div>
       <ExperienceRoot experience={experience} locale={locale} />
     </Layout>
   );
