@@ -518,3 +518,19 @@
     display: none;
   }
 }
+
+.storeListHeading {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.storeList {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}

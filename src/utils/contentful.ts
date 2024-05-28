@@ -73,4 +73,28 @@ export async function fetchProducts(fetchProductIds: string[], locale: string) {
   }
 }
 
+export async function fetchComponentStoreInformationBySlug(slug: string, locale: string) {
+  try {
+    const entries = await client.getEntries({
+      content_type: 'componentStoreIntormation',
+      'fields.slug': slug,
+      locale: locale
+    });
+
+    if (entries.items.length > 0) {
+      const entry = entries.items[0];
+      return {
+        title: entry.fields.title as string,  // Ensure title is a string
+        content: entry.fields.content,
+        slug: entry.fields.slug as string // Ensure slug is a string
+      };
+    } else {
+      console.log(`No entry found for componentStoreIntormation with slug ${slug}.`);
+      return null;
+    }
+  } catch (error) {
+    console.error(`Error fetching componentStoreIntormation with slug ${slug}:`, error);
+    return null;
+  }
+}
 
