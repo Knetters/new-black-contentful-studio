@@ -1,5 +1,8 @@
 import { createClient, Entry } from 'contentful';
 
+const space: string = process.env.VITE_CONTENTFUL_SPACE || "";
+const key: string = process.env.VITE_CONTENTFUL_KEY || "";
+
 const client = createClient({
   space: 'vkwyrakkzeu8',
   accessToken: 'zjbeDxMIR0mrH1NivBT5tvW9KwlpbL-GDru4KmfWvjA'
