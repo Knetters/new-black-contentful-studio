@@ -118,4 +118,12 @@ function ExperienceBuilderPage({
   );
 }
 
+// export async function generateStaticParams() {
+//   const stores = ['alkmaar', 'utrecht']
+
+//   return stores.map((store) => ({
+//     slug: store,
+//   }))
+// }
+
 export default ExperienceBuilderPage;
