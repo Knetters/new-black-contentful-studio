@@ -28,12 +28,9 @@ interface Store {
 let city: string;
 
 export const getServerSideProps = async ({
-  params,
   locale,
 }: GetServerSidePropsContext) => {
   const lang: string = locale || "en";
-  const { slug } = params as { slug: string };
-  city = slug;
 
   try {
     const experienceEntry = await fetchBySlug({
@@ -49,29 +46,10 @@ export const getServerSideProps = async ({
       };
     }
 
-    const componentInfo = await fetchComponentStoreInformationBySlug(
-      city,
-      lang
-    );
-
-    let stores: Store[] = [];
-    if (!componentInfo) {
-      const entries = await client.getEntries({
-        content_type: "componentStoreIntormation",
-        locale: lang,
-      });
-      stores = entries.items.map((entry: any) => ({
-        title: entry.fields.title,
-        slug: entry.fields.slug,
-      }));
-    }
-
     return {
       props: {
         experienceEntryJSON: JSON.stringify(experienceEntry),
         locale: lang,
-        componentInfo: componentInfo as ComponentInfo | null,
-        stores,
       },
     };
   } catch (e) {
@@ -85,8 +63,6 @@ export const getServerSideProps = async ({
 function ExperienceBuilderPage({
   experienceEntryJSON,
   locale,
-  componentInfo,
-  stores,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const experience = createExperience(experienceEntryJSON);
 
