@@ -69,3 +69,7 @@ a {
 .cf-richtext li:last-child {
   margin-bottom: -1rem;
 }
+
+.cf-richtext li {
+  margin-left: 4rem;
+}
