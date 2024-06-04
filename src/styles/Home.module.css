@@ -534,3 +534,21 @@
   justify-content: center;
   gap: 1.5rem;
 }
+
+.storeInfoContainer {
+  width: 100%;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--bg-beige);
+}
+
+.storeInfoContainer h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4rem;
+  text-align: center;
+}
+
+.cityTitle {
+  margin-bottom: 2rem;
+}

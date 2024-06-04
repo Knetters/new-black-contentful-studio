@@ -1,4 +1,3 @@
-// store/index.tsx
 import Layout from "../../components/Layout";
 import styles from "@/styles/Home.module.css";
 import React from "react";
@@ -9,7 +8,6 @@ import {
 } from "@contentful/experiences-sdk-react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { client } from "../../contentfulClient";
-import { fetchComponentStoreInformationBySlug } from "../../utils/contentful";
 
 interface Store {
   title: string;

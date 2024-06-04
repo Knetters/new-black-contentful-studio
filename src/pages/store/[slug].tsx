@@ -1,5 +1,4 @@
 import Layout from "../../components/Layout";
-import styles from "@/styles/Home.module.css";
 import React from "react";
 import {
   createExperience,
@@ -10,8 +9,6 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { client } from "../../contentfulClient";
 import "../../registeredComponents";
 import "../../registeredTokens";
-import { fetchComponentStoreInformationBySlug } from "../../utils/contentful";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Document } from "@contentful/rich-text-types";
 
 interface ComponentInfo {

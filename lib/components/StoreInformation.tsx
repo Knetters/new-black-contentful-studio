@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "@/styles/Home.module.css";
 import { fetchComponentStoreInformationBySlug } from "../../src/utils/contentful";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { client } from "../../src/contentfulClient";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { Document } from "@contentful/rich-text-types";
+import Link from "next/link";
 
 interface StoreInformationProps {
   title: string;
@@ -32,7 +34,7 @@ export const StoreInformation: React.FC<StoreInformationProps> = ({
   const [stores, setStores] = useState<Store[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const locale = "en"; // Default locale
+  const { locale } = router;
 
   // Extract the city from the URL
   const city = router.asPath.split("/").pop() || "";
@@ -40,13 +42,16 @@ export const StoreInformation: React.FC<StoreInformationProps> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const info = await fetchComponentStoreInformationBySlug(city, locale);
+        const info = await fetchComponentStoreInformationBySlug(
+          city,
+          locale || "en"
+        );
         setComponentInfo(info);
 
         if (!info) {
           const entries = await client.getEntries({
             content_type: "componentStoreIntormation",
-            locale: locale,
+            locale: locale || "en",
           });
           const storeList = entries.items.map((entry: any) => ({
             title: entry.fields.title,
@@ -74,10 +79,10 @@ export const StoreInformation: React.FC<StoreInformationProps> = ({
   }
 
   return (
-    <div>
+    <div className={styles.storeInfoContainer}>
       {componentInfo ? (
         <>
-          <h1>{componentInfo.title}</h1>
+          <h1 className={styles.cityTitle}>{componentInfo.title}</h1>
           {typeof componentInfo.content === "string" ? (
             <div>{componentInfo.content}</div>
           ) : (
@@ -90,7 +95,9 @@ export const StoreInformation: React.FC<StoreInformationProps> = ({
           <ul className={styles.storeList}>
             {stores.map((store, index) => (
               <li key={index}>
-                <a href={`/${locale}/stores/${store.slug}`}>{store.title}</a>
+                <Link href={`/${locale}/store/${store.slug}`}>
+                  {store.title}
+                </Link>
               </li>
             ))}
           </ul>
