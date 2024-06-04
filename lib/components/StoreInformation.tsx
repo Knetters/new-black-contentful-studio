@@ -1,93 +1,101 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import styles from "@/styles/Home.module.css";
-import {
-  fetchAllProductEntries,
-  fetchProductIds,
-  fetchProducts,
-} from "../../src/utils/contentful";
-import Product from "./Product";
-import FilterBar from "./FilterBar";
+import { fetchComponentStoreInformationBySlug } from "../../src/utils/contentful";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { client } from "../../src/contentfulClient";
 
-interface Product {
-  id: string;
+interface StoreInformationProps {
   title: string;
-  slug: string;
-  price: number;
-  imageURL: string;
-}
-
-interface ProductId {
-  ids: string[];
-}
-
-interface ProductGridComponentProps {
-  title: string;
-  slug: string;
   className?: string;
 }
 
-export const ProductGrid: React.FC<ProductGridComponentProps> = ({
+interface ComponentInfo {
+  title: string;
+  content: string | Document;
+  slug: string;
+}
+
+interface Store {
+  title: string;
+  slug: string;
+}
+
+export const StoreInformation: React.FC<StoreInformationProps> = ({
   title,
-  slug,
   className,
 }) => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [productCount, setProductCount] = useState<number>(0);
+  const router = useRouter();
+  const [componentInfo, setComponentInfo] = useState<ComponentInfo | null>(
+    null
+  );
+  const [stores, setStores] = useState<Store[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const locale = "en"; // Default locale
+
+  // Extract the city from the URL
+  const city = router.asPath.split("/").pop() || "";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let fetchedProducts: Product[] = [];
-        if (!slug) {
-          console.log("No product grid slug found");
-          const entries = await fetchAllProductEntries("en");
-          fetchedProducts = entries.map((entry: any) => ({
-            id: entry.sys.id,
+        const info = await fetchComponentStoreInformationBySlug(city, locale);
+        setComponentInfo(info);
+
+        if (!info) {
+          const entries = await client.getEntries({
+            content_type: "componentStoreIntormation",
+            locale: locale,
+          });
+          const storeList = entries.items.map((entry: any) => ({
             title: entry.fields.title,
             slug: entry.fields.slug,
-            price: entry.fields.price,
-            imageURL: entry.fields.image.fields.file.url,
           }));
-        } else {
-          const entries = await fetchProductIds("en");
-          const productIdData = entries.map((entry: any) => ({
-            ids: entry.fields.products,
-          }));
-          const productIds = productIdData.flatMap(
-            (entry: ProductId) => entry.ids
-          );
-          fetchedProducts = (await fetchProducts(
-            productIds,
-            "en"
-          )) as Product[];
+          setStores(storeList);
         }
-        setProducts(fetchedProducts);
-        setProductCount(fetchedProducts.length);
-      } catch (error) {
-        console.error("Error fetching product entries:", error);
+      } catch (err) {
+        console.error(err);
+        setError("An error occurred while fetching store information.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, [slug]);
+  }, [city, locale]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
-    <div className={className}>
-      <h2 className={styles.gridTitle}>{title}</h2>
-      <p className={styles.productCount}>{productCount} Artikelen</p>
-      <FilterBar />
-      <ul className={styles.productsGrid}>
-        {products.map((product) => (
-          <Product
-            key={product.id}
-            id={product.id}
-            title={product.title}
-            slug={product.slug}
-            price={product.price}
-            imageURL={product.imageURL}
-          />
-        ))}
-      </ul>
+    <div>
+      {componentInfo ? (
+        <>
+          <h1>{componentInfo.title}</h1>
+          {typeof componentInfo.content === "string" ? (
+            <div>{componentInfo.content}</div>
+          ) : (
+            documentToReactComponents(componentInfo.content as Document) // Render rich text content
+          )}
+        </>
+      ) : (
+        <>
+          <h1 className={styles.storeListHeading}>List of stores</h1>
+          <ul className={styles.storeList}>
+            {stores.map((store, index) => (
+              <li key={index}>
+                <a href={`/${locale}/stores/${store.slug}`}>{store.title}</a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };

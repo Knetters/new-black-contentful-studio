@@ -92,38 +92,9 @@ function ExperienceBuilderPage({
 
   return (
     <Layout>
-      {componentInfo ? (
-        <>
-          <h1>{componentInfo.title}</h1>
-          {typeof componentInfo.content === "string" ? (
-            <div>{componentInfo.content}</div>
-          ) : (
-            documentToReactComponents(componentInfo.content as Document) // Render rich text content
-          )}
-        </>
-      ) : (
-        <>
-          <h1 className={styles.storeListHeading}>List of stores</h1>
-          <ul className={styles.storeList}>
-            {stores.map((store, index) => (
-              <li key={index}>
-                <a href={`/${locale}/store/${store.slug}`}>{store.title}</a>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
       <ExperienceRoot experience={experience} locale={locale} />
     </Layout>
   );
 }
-
-// export async function generateStaticParams() {
-//   const stores = ['alkmaar', 'utrecht']
-
-//   return stores.map((store) => ({
-//     slug: store,
-//   }))
-// }
 
 export default ExperienceBuilderPage;

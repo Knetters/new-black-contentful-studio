@@ -8,6 +8,7 @@ import { ActionBanner } from '../lib/components/ActionBanner';
 import { FeaturedProduct } from '../lib/components/FeaturedProduct';
 import { FeaturedProductGrid } from '../lib/components/FeaturedProductGrid';
 import { ProductGrid } from '../lib/components/ProductGrid';
+import { StoreInformation } from '../lib/components/StoreInformation';
 
 defineComponents([
   {
@@ -313,6 +314,29 @@ defineComponents([
         }
       },
       children: true,
+    },
+    options: { wrapComponent: false },
+  },
+  {
+    component: StoreInformation,
+    definition: {
+      id: 'storeinformation',
+      name: 'Store Info',
+      category: 'UI',
+      builtInStlyes: ['cfMargin', 'cfPadding', 'cfWidth' ],
+      variables: {
+        title: {
+          displayName: 'Title',
+          type: 'Text',
+          defaultValue: 'List of stores',
+        },
+        cfWidth: {
+          displayName: 'Width',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '100%'
+        }
+      },
     },
     options: { wrapComponent: false },
   },
