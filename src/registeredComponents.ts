@@ -9,6 +9,7 @@ import { FeaturedProduct } from '../lib/components/FeaturedProduct';
 import { FeaturedProductGrid } from '../lib/components/FeaturedProductGrid';
 import { ProductGrid } from '../lib/components/ProductGrid';
 import { StoreInformation } from '../lib/components/StoreInformation';
+import { ProductQuery } from '../lib/components/ProducQuery';
 
 defineComponents([
   {
@@ -329,6 +330,34 @@ defineComponents([
           displayName: 'Title',
           type: 'Text',
           defaultValue: 'List of stores',
+        },
+        cfWidth: {
+          displayName: 'Width',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '100%'
+        }
+      },
+    },
+    options: { wrapComponent: false },
+  },
+  {
+    component: ProductQuery,
+    definition: {
+      id: 'productquiry',
+      name: 'Product quiry',
+      category: 'UI',
+      builtInStlyes: ['cfMargin', 'cfPadding', 'cfWidth' ],
+      variables: {
+        query: {
+          displayName: 'Query',
+          type: 'Text',
+          defaultValue: 'shirts',
+        },
+        amount: {
+          displayName: 'Amount',
+          type: 'Number',
+          defaultValue: '25',
         },
         cfWidth: {
           displayName: 'Width',
