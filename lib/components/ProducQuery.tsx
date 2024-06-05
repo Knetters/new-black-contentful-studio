@@ -152,7 +152,7 @@ export const ProductQuery: React.FC<ProductQueryComponentProps> = ({
             title={product.display_value}
             slug={product.slug}
             price={product.display_price}
-            imageURL={product.primary_image?.url}
+            imageURL={product.primary_image?.url || ""}
           />
         ))}
       </ul>
