@@ -24,7 +24,12 @@ const Product: React.FC<ProductProps> = ({
       {imageURL && (
         <li key={id} className={styles.productContainer}>
           <Link href={`/product/${slug}`}>
-            <img className={styles.productImage} src={imageURL} alt="" />
+            <img
+              className={styles.productImage}
+              src={imageURL}
+              alt=""
+              loading="lazy"
+            />
             <h2 className={styles.productTitle}>{title}</h2>
             <span className={styles.price}>€ {price}</span>
           </Link>
