@@ -20,17 +20,20 @@ const Product: React.FC<ProductProps> = ({
   imageURL,
 }) => {
   return (
-    <li key={id} className={styles.productContainer}>
-      <p></p>
-      <Link href={`/product/${slug}`}>
-        <img className={styles.productImage} src={imageURL} alt="" />
-        <h2 className={styles.productTitle}>{title}</h2>
-        <span className={styles.price}>€ {price}</span>
-      </Link>
-      <div className={styles.favoriteIcon}>
-        <HeartOutline />
-      </div>
-    </li>
+    <>
+      {imageURL && (
+        <li key={id} className={styles.productContainer}>
+          <Link href={`/product/${slug}`}>
+            <img className={styles.productImage} src={imageURL} alt="" />
+            <h2 className={styles.productTitle}>{title}</h2>
+            <span className={styles.price}>€ {price}</span>
+          </Link>
+          <div className={styles.favoriteIcon}>
+            <HeartOutline />
+          </div>
+        </li>
+      )}
+    </>
   );
 };
 

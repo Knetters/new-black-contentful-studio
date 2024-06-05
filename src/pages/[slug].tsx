@@ -126,7 +126,6 @@ function ExperienceBuilderPage({
         </div>
       )}
       {/* You can now access the dynamicWord prop here */}
-      <p>The dynamic city from URL: {dynamicWord}</p>
     </Layout>
   );
 }
