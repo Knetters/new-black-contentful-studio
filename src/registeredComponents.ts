@@ -385,9 +385,10 @@ defineComponents([
         },
         productIds: {
           displayName: 'Products',
-          type: 'Object',
+          type: 'Text',
+          group: 'content',
           validations: {
-            in: ['product'],
+            linkContentType: ['product']
           },
           defaultValue: [],
         },
