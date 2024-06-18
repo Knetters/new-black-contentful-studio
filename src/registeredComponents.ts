@@ -10,6 +10,7 @@ import { FeaturedProductGrid } from '../lib/components/FeaturedProductGrid';
 import { ProductGrid } from '../lib/components/ProductGrid';
 import { StoreInformation } from '../lib/components/StoreInformation';
 import { ProductQuery } from '../lib/components/ProducQuery';
+import { ProductList } from '../lib/components/ProductList';
 
 defineComponents([
   {
@@ -346,7 +347,7 @@ defineComponents([
     definition: {
       id: 'productquiry',
       name: 'Product quiry',
-      category: 'UI',
+      category: 'Product display',
       builtInStlyes: ['cfMargin', 'cfPadding', 'cfWidth' ],
       variables: {
         query: {
@@ -369,5 +370,35 @@ defineComponents([
     },
     options: { wrapComponent: false },
   },
+  {
+    component: ProductList,
+    definition: {
+      id: 'productlist',
+      name: 'Product list',
+      category: 'Product display',
+      builtInStyles: ['cfMargin', 'cfPadding', 'cfWidth'],
+      variables: {
+        title: {
+          displayName: 'Title',
+          type: 'Text',
+          defaultValue: 'Product list',
+        },
+        productIds: {
+          displayName: 'Products',
+          type: 'Object',
+          validations: {
+            in: ['product'],
+          },
+          defaultValue: [],
+        },
+        cfWidth: {
+          displayName: 'Width',
+          type: 'Text',
+          group: 'style',
+          defaultValue: '100%'
+        }
+      }
+    },
+    options: { wrapComponent: false },
+  }
 ]);
-
