@@ -17,7 +17,7 @@
     "@contentful/rich-text-react-renderer": "^15.21.2",
     "axios": "^1.7.2",
     "contentful": "^10.8.7",
-    "next": "14.1.4",
+    "next": "14.2.10",
     "react": "^18",
     "react-dom": "^18",
     "react-markdown": "^9.0.1"
